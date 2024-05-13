@@ -1,47 +1,37 @@
-import { useEffect, useState } from "react";
-import ReactMapGL, {
-  GeolocateControl,
-  Marker,
-  NavigationControl,
-} from "react-map-gl";
-
-export interface locationProps {
-  latitude: number;
-  longitude: number;
-}
+import ReactMapGL, { GeolocateControl, NavigationControl } from "react-map-gl";
+import { useUserLocationContext } from "../contexts/LocationProvider";
+import { MarkerDTO, useMarkerContext } from "../contexts/MarkerProvider";
+import ClassicMarker from "./Markers/ClassicMarker";
 
 const Map: React.FC = () => {
-  const [location, setLocation] = useState<locationProps>({
-    latitude: 0,
-    longitude: 0,
-  });
-
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      setLocation({
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
-      });
-    });
-  }, []);
+  const { userLocation } = useUserLocationContext();
+  const { markers } = useMarkerContext();
 
   const token: string =
     process.env.MAPBOX_TOKEN ||
     "pk.eyJ1IjoibGVvZXhlZSIsImEiOiJjbHczbDM2YWUxMG1yMmlvY2FpajZmNnBuIn0.sgGHEC6thAy1yS1ExR58Hw";
-    
+
   return (
     <div className="h-screen w-full">
       <ReactMapGL
         mapboxAccessToken={token}
         initialViewState={{
-          latitude: location.latitude,
-          longitude: location.longitude,
+          latitude: userLocation.latitude,
+          longitude: userLocation.longitude,
           zoom: 18,
         }}
         mapStyle="mapbox://styles/mapbox/streets-v9"
       >
         <NavigationControl />
         <GeolocateControl position="top-right" />
+        {markers.map(({ id, latitude, longitude }: MarkerDTO) => (
+          <ClassicMarker
+            key={id}
+            id={id}
+            latitude={latitude}
+            longitude={longitude}
+          />
+        ))}
       </ReactMapGL>
     </div>
   );
