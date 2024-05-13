@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "mapbox-gl/dist/mapbox-gl.css";
 
 //import { useTranslation } from 'react-i18next';
 // import "./i18n";

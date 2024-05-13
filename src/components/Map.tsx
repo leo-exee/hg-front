@@ -1,23 +1,49 @@
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { useEffect, useState } from "react";
+import ReactMapGL, {
+  GeolocateControl,
+  Marker,
+  NavigationControl,
+} from "react-map-gl";
+
+export interface locationProps {
+  latitude: number;
+  longitude: number;
+}
 
 const Map: React.FC = () => {
+  const [location, setLocation] = useState<locationProps>({
+    latitude: 0,
+    longitude: 0,
+  });
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      setLocation({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+      });
+    });
+  }, []);
+
+  const token: string =
+    process.env.MAPBOX_TOKEN ||
+    "pk.eyJ1IjoibGVvZXhlZSIsImEiOiJjbHczbDM2YWUxMG1yMmlvY2FpajZmNnBuIn0.sgGHEC6thAy1yS1ExR58Hw";
+    
   return (
-    <MapContainer
-      className="h-full w-full"
-      center={[51.505, -0.09]}
-      zoom={13}
-      scrollWheelZoom={false}
-    >
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      <Marker position={[51.505, -0.09]}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker>
-    </MapContainer>
+    <div className="h-screen w-full">
+      <ReactMapGL
+        mapboxAccessToken={token}
+        initialViewState={{
+          latitude: location.latitude,
+          longitude: location.longitude,
+          zoom: 18,
+        }}
+        mapStyle="mapbox://styles/mapbox/streets-v9"
+      >
+        <NavigationControl />
+        <GeolocateControl position="top-right" />
+      </ReactMapGL>
+    </div>
   );
 };
 
