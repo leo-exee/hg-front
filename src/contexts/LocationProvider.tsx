@@ -1,8 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
 export interface position {
-  latitude: number;
-  longitude: number;
+  lat: number;
+  long: number;
 }
 
 interface locationContextProps {
@@ -12,12 +12,11 @@ interface locationContextProps {
 
 const LocationContext = createContext<locationContextProps>({
   userLocation: {
-    latitude: 0,
-    longitude: 0,
+    lat: 0,
+    long: 0,
   },
   setUserLocation: () => {},
 });
-
 
 interface LocationProviderProps {
   children: React.ReactNode;
@@ -27,15 +26,15 @@ export const LocationProvider: React.FC<LocationProviderProps> = ({
   children,
 }) => {
   const [userLocation, setUserLocation] = useState<position>({
-    latitude: 0,
-    longitude: 0,
+    lat: 0,
+    long: 0,
   });
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
       setUserLocation({
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
+        lat: position.coords.latitude,
+        long: position.coords.longitude,
       });
     });
   }, []);

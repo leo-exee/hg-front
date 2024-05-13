@@ -6,9 +6,9 @@ interface MarkerProps extends MarkerDTO {
   key: string;
 }
 
-const ClassicMarker: React.FC<MarkerProps> = ({ id, latitude, longitude }) => {
+const ClassicMarker: React.FC<MarkerProps> = ({ id, location }) => {
   return (
-    <Marker key={id} latitude={latitude} longitude={longitude}>
+    <Marker key={id} latitude={location.lat} longitude={location.long}>
       <FmdGoodIcon className="text-blue-500 text-3xl" />
     </Marker>
   );

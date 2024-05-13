@@ -1,9 +1,10 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { getToilets } from "../services/api.toilets";
+import { position } from "./LocationProvider";
 
 export interface MarkerDTO {
   id: string;
-  latitude: number;
-  longitude: number;
+  location: position;
 }
 
 interface MarkerContextProps {
@@ -24,28 +25,9 @@ export const MarkerProvider: React.FC<MarkerProviderProps> = ({ children }) => {
   const [markers, setMarkers] = useState<MarkerDTO[]>([]);
 
   useEffect(() => {
-    setMarkers([
-      {
-        id: "1",
-        latitude: 45.78,
-        longitude: 5.78,
-      },
-      {
-        id: "2",
-        latitude: 48.8566,
-        longitude: 2.3522,
-      },
-      {
-        id: "3",
-        latitude: 37.7749,
-        longitude: 5.69,
-      },
-      {
-        id: "4",
-        latitude: 45.755,
-        longitude: 4.817,
-      },
-    ]);
+    getToilets().then((toilets) => {
+      setMarkers(toilets);
+    });
   }, []);
 
   return (

@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import Detail from "./pages/Detail";
 import Dashboard from "./pages/Dashboard";
 import NoMatch from "./pages/NoMatch";
+import Add from "./pages/Add";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/map/:id" element={<Detail />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="dashboard/add" element={<Add />} />
           <Route path="*" element={<NoMatch />} />
         </Route>
       </Routes>
