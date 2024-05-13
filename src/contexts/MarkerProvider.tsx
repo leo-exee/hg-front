@@ -1,15 +1,10 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { getToilets } from "../services/api.toilets";
-import { position } from "./LocationProvider";
-
-export interface MarkerDTO {
-  id: string;
-  location: position;
-}
+import { ToiletDTO } from "../types/toilets.type";
 
 interface MarkerContextProps {
-  markers: MarkerDTO[];
-  setMarkers: (markers: MarkerDTO[]) => void;
+  markers: ToiletDTO[];
+  setMarkers: (markers: ToiletDTO[]) => void;
 }
 
 const MarkerContext = createContext<MarkerContextProps>({
@@ -22,7 +17,7 @@ interface MarkerProviderProps {
 }
 
 export const MarkerProvider: React.FC<MarkerProviderProps> = ({ children }) => {
-  const [markers, setMarkers] = useState<MarkerDTO[]>([]);
+  const [markers, setMarkers] = useState<ToiletDTO[]>([]);
 
   useEffect(() => {
     getToilets().then((toilets) => {

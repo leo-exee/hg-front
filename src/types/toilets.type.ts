@@ -34,6 +34,7 @@ export interface ToiletDTO {
   id: string;
   userId: string;
   name: string;
+  description: string;
   address: string;
   location: position;
   information: information;

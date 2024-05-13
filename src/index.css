@@ -17,6 +17,11 @@ code {
 }
 
 .mapboxgl-ctrl-bottom-left,
-.mapboxgl-ctrl-bottom-right {
+.mapboxgl-ctrl-bottom-right,
+.mapboxgl-user-location-accuracy-circle {
   display: none;
+}
+
+.mapboxgl-popup-content {
+  padding: 0 !important;
 }

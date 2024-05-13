@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import AddressInput from "./Forms/AddressInput";
 import { postToilet } from "../services/api.toilets";
+import { useNavigate } from "react-router-dom";
 
 interface FormProps {
   entity?: ToiletDTO;
@@ -20,6 +21,7 @@ interface FormProps {
 
 const defaultForm: Partial<ToiletDTO> = {
   name: undefined,
+  description: undefined,
   address: undefined,
   location: undefined,
   information: {
@@ -39,6 +41,7 @@ const defaultForm: Partial<ToiletDTO> = {
 };
 
 const MarkerForm: React.FC<FormProps> = ({ entity }) => {
+  const navigate = useNavigate();
   const [form, setForm] = useState<any>(
     entity ? entity : (defaultForm as Partial<ToiletDTO>)
   );
@@ -65,9 +68,16 @@ const MarkerForm: React.FC<FormProps> = ({ entity }) => {
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    form.reviews = [];
-    postToilet(form);
+    try {
+      e.preventDefault();
+      form.reviews = [];
+      const response = postToilet(form);
+      response.then((res) => {
+        navigate(`/map/${res.id}`);
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -133,6 +143,17 @@ const MarkerForm: React.FC<FormProps> = ({ entity }) => {
             label="Handicap Friendly"
           />
         </FormGroup>
+        <TextField
+          margin="normal"
+          multiline
+          rows={4}
+          fullWidth
+          id="description"
+          label="Description"
+          name="description"
+          value={form.description}
+          onChange={handleChange}
+        />
         <Button type="submit" fullWidth variant="contained">
           {entity ? "Update" : "Create"}
         </Button>
