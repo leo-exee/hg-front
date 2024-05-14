@@ -14,6 +14,10 @@ import { getUserToken } from "./constants/api.constant";
 import Authentification from "./pages/Authentification";
 
 function App() {
+  const [token, setToken] = React.useState<string | null>(getUserToken());
+  useEffect(() => {
+    setToken(getUserToken());
+  }, []);
   return (
     <BrowserRouter>
       <Routes>
@@ -22,13 +26,13 @@ function App() {
           <Route path="/map/:id" element={<Detail />} />
           <Route
             path="/dashboard"
-            element={getUserToken() ? <Dashboard /> : <Authentification />}
+            element={token ? <Dashboard /> : <Authentification />}
           />
+          <Route path="/add" element={token ? <Add /> : <Authentification />} />
           <Route
-            path="/add"
-            element={getUserToken() ? <Add /> : <Authentification />}
+            path="/authentification"
+            element={token ? <Dashboard /> : <Authentification />}
           />
-          <Route path="/authentification" element={<Authentification />} />
           <Route path="*" element={<NoMatch />} />
         </Route>
       </Routes>
