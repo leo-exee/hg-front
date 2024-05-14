@@ -23,7 +23,7 @@ export const MarkerProvider: React.FC<MarkerProviderProps> = ({ children }) => {
     getToilets().then((toilets) => {
       setMarkers(toilets);
     });
-  }, []);
+  }, [children]);
 
   return (
     <MarkerContext.Provider

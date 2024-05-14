@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { lockSystem, ToiletDTO } from "../types/toilets.type";
+import { useMemo, useState } from "react";
+import { lockSystem, ToiletDTO } from "../../types/toilets.type";
 import {
   Box,
   Button,
@@ -11,9 +11,11 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import AddressInput from "./Forms/AddressInput";
-import { postToilet } from "../services/api.toilets";
+import AddressInput from "./AddressInput";
+import { postToilet } from "../../services/api.toilets";
 import { useNavigate } from "react-router-dom";
+import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
+import { describeToilet } from "../../services/api.ai";
 
 interface FormProps {
   entity?: ToiletDTO;
@@ -45,6 +47,8 @@ const MarkerForm: React.FC<FormProps> = ({ entity }) => {
   const [form, setForm] = useState<any>(
     entity ? entity : (defaultForm as Partial<ToiletDTO>)
   );
+  const [isFormLoading, setIsFormLoading] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -68,20 +72,66 @@ const MarkerForm: React.FC<FormProps> = ({ entity }) => {
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    try {
-      e.preventDefault();
-      form.reviews = [];
-      const response = postToilet(form);
-      response.then((res) => {
-        navigate(`/map/${res.id}`);
-      });
-    } catch (error) {
-      console.error(error);
+    if (isFormValid) {
+      try {
+        setIsFormLoading(true);
+        e.preventDefault();
+        form.reviews = [];
+        const response = postToilet(form);
+        response.then((res) => {
+          navigate(`/dashboard`);
+        });
+      } catch (error) {
+        setIsFormLoading(false);
+        setForm(defaultForm);
+        console.error(error);
+      }
     }
   };
 
+  const handleGenerateDescription = () => {
+    try {
+      setIsGenerating(true);
+      const content = {
+        name: form.name,
+        address: form.address,
+        cleanliness: form.information.cleanliness,
+        accessibility: form.information.accessbility,
+        state: form.information.state,
+        babyFriendly: form.information.babyFriendly,
+        handicapFriendly: form.information.handicapFriendly,
+        language: "EN",
+      };
+      const description = describeToilet(content);
+      description.then((res) => {
+        setForm({ ...form, description: res });
+        handleChange({
+          target: { name: "description", value: res },
+        } as React.ChangeEvent<HTMLInputElement>);
+      });
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsGenerating(false);
+    }
+  };
+
+  const isFormValid = useMemo(() => {
+    return form.name && form.address && form.information;
+  }, [form]);
+
+  const isGeneratingAvailable = useMemo(() => {
+    return (
+      form.name &&
+      form.address &&
+      form.information.cleanliness &&
+      form.information.accessbility &&
+      form.information.state
+    );
+  }, [form]);
+
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" className="mb-4">
       <Box
         component="form"
         onSubmit={handleSubmit}
@@ -105,18 +155,21 @@ const MarkerForm: React.FC<FormProps> = ({ entity }) => {
           name="state"
           value={form.information?.state}
           onChange={handleRatingChange}
+          aria-required
         />
         <Typography variant="subtitle1">Cleanliness</Typography>
         <Rating
           name="cleanliness"
           value={form.information?.cleanliness}
           onChange={handleRatingChange}
+          aria-required
         />
         <Typography variant="subtitle1">Accessibility</Typography>
         <Rating
           name="accessbility"
           value={form.information?.accessbility}
           onChange={handleRatingChange}
+          aria-required
         />
         <FormGroup>
           <FormControlLabel
@@ -129,6 +182,7 @@ const MarkerForm: React.FC<FormProps> = ({ entity }) => {
               />
             }
             label="Baby Friendly"
+            required
           />
 
           <FormControlLabel
@@ -141,6 +195,7 @@ const MarkerForm: React.FC<FormProps> = ({ entity }) => {
               />
             }
             label="Handicap Friendly"
+            required
           />
         </FormGroup>
         <TextField
@@ -153,8 +208,23 @@ const MarkerForm: React.FC<FormProps> = ({ entity }) => {
           name="description"
           value={form.description}
           onChange={handleChange}
+          required
         />
-        <Button type="submit" fullWidth variant="contained">
+        <Button
+          fullWidth
+          variant="outlined"
+          startIcon={<AutoAwesomeIcon />}
+          onClick={handleGenerateDescription}
+          disabled={!isGeneratingAvailable || isGenerating}
+        >
+          Generate description
+        </Button>
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          disabled={!isFormValid || isFormLoading}
+        >
           {entity ? "Update" : "Create"}
         </Button>
       </Box>

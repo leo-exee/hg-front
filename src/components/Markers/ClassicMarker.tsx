@@ -58,7 +58,7 @@ const ClassicMarker: React.FC<MarkerProps> = ({ id, location, ...props }) => {
                 size="small"
               />
               <Typography variant="body2" className="ml-2">
-                {props.information.rating}/5
+                {props.information.rating.toFixed()}/5
               </Typography>
             </div>
             <Typography

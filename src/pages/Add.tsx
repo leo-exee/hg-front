@@ -1,4 +1,4 @@
-import MarkerForm from "../components/MarkerForm";
+import MarkerForm from "../components/Forms/MarkerForm";
 
 const Add: React.FC = () => {
   return (

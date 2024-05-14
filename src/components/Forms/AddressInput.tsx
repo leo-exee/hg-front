@@ -29,6 +29,7 @@ const AddressInput: React.FC<AddressInputProps> = ({ form, setForm }) => {
 
   return (
     <Autocomplete
+      aria-required
       id="google-map-demo"
       getOptionLabel={(option) =>
         typeof option === "string" ? option : option.label
