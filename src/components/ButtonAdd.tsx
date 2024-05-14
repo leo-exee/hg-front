@@ -6,7 +6,7 @@ const ButtonAdd: React.FC = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/dashboard/add");
+    navigate("/add");
   };
   return (
     <div className="absolute bottom-4 right-4">

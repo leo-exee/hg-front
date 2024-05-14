@@ -1,6 +1,7 @@
 import axios from "axios";
+import { API_URL } from "../constants/api.constant";
 
-const BASE_URL = "http://localhost:4000";
+
 
 export interface ContentDTO {
   name: string;
@@ -14,6 +15,6 @@ export interface ContentDTO {
 }
 
 export const describeToilet = async (content: ContentDTO) => {
-  const response = await axios.post(`${BASE_URL}/ai/describe`, content);
+  const response = await axios.post(`${API_URL}/ai/describe`, content);
   return response.data;
 };

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { RegisterDTO } from "../../types/user.type";
 import { useNavigate } from "react-router-dom";
 import { Box, Button, Container, TextField, Typography } from "@mui/material";
@@ -16,6 +16,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ destination }) => {
     password: "",
     confirmPassword: "",
   });
+  const [isFormLoading, setIsFormLoading] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -23,6 +24,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ destination }) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     try {
+      setIsFormLoading(true);
       if (form.password !== form.confirmPassword) {
         throw new Error("Passwords do not match");
       }
@@ -32,9 +34,20 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ destination }) => {
         navigate(destination || "/");
       });
     } catch (error) {
+      setIsFormLoading(false);
       console.error(error);
     }
   };
+
+  const isFormValid = useMemo(() => {
+    return (
+      form.email.length > 0 &&
+      form.password.length > 0 &&
+      form.username.length > 0 &&
+      form.confirmPassword.length > 0 &&
+      form.password === form.confirmPassword
+    );
+  }, [form]);
 
   return (
     <Container component="main" maxWidth="xs">
@@ -44,7 +57,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ destination }) => {
         noValidate
         className="space-y-4"
       >
-        <Typography variant="h5" align="center" className="text-2xl mt-4 mb-2">
+        <Typography variant="h5" className="mt-4 mb-2">
           Register
         </Typography>
         <TextField
@@ -87,7 +100,13 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ destination }) => {
           onChange={handleChange}
         />
 
-        <Button type="submit" fullWidth variant="contained" color="primary">
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          color="primary"
+          disabled={!isFormValid || isFormLoading}
+        >
           Register
         </Button>
       </Box>

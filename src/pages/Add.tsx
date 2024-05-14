@@ -1,11 +1,7 @@
 import MarkerForm from "../components/Forms/MarkerForm";
 
 const Add: React.FC = () => {
-  return (
-    <div>
-      <MarkerForm />
-    </div>
-  );
+  return <MarkerForm />;
 };
 
 export default Add;

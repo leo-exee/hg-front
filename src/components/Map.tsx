@@ -5,6 +5,7 @@ import ClassicMarker from "./Markers/ClassicMarker";
 import { MAPBOX_TOKEN } from "../constants/api.constant";
 import { ToiletDTO } from "../types/toilets.type";
 import { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Map: React.FC = () => {
   const { userLocation } = useUserLocationContext();

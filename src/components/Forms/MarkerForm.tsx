@@ -108,11 +108,11 @@ const MarkerForm: React.FC<FormProps> = ({ entity }) => {
         handleChange({
           target: { name: "description", value: res },
         } as React.ChangeEvent<HTMLInputElement>);
+        setIsGenerating(false);
       });
     } catch (error) {
-      console.error(error);
-    } finally {
       setIsGenerating(false);
+      console.error(error);
     }
   };
 
@@ -132,6 +132,9 @@ const MarkerForm: React.FC<FormProps> = ({ entity }) => {
 
   return (
     <Container component="main" maxWidth="xs" className="mb-4">
+      <Typography variant="h5" className="mt-4">
+        {entity ? "Update Toilet" : "Add Toilet"}
+      </Typography>
       <Box
         component="form"
         onSubmit={handleSubmit}

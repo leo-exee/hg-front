@@ -25,14 +25,8 @@ function App() {
             element={getUserToken() ? <Dashboard /> : <Authentification />}
           />
           <Route
-            path="dashboard/add"
-            element={
-              getUserToken() ? (
-                <Add />
-              ) : (
-                <Authentification redirection="/dashboard/add" />
-              )
-            }
+            path="/add"
+            element={getUserToken() ? <Add /> : <Authentification />}
           />
           <Route path="/authentification" element={<Authentification />} />
           <Route path="*" element={<NoMatch />} />

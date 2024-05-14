@@ -1,5 +1,5 @@
 import { Box, Button, Container, TextField, Typography } from "@mui/material";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginDTO } from "../../types/user.type";
 import { login } from "../../services/api.user";
@@ -10,20 +10,31 @@ const LoginForm: React.FC = () => {
     email: "",
     password: "",
   });
+  const [isFormLoading, setIsFormLoading] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const response = login(form);
-    response.then((res) => {
-      if (res) {
-        navigate("/");
-      }
-    });
+    try {
+      setIsFormLoading(true);
+      e.preventDefault();
+      const response = login(form);
+      response.then((res) => {
+        if (res) {
+          navigate("/");
+        }
+      });
+    } catch (error) {
+      setIsFormLoading(false);
+      console.error(error);
+    }
   };
+
+  const isFormValid = useMemo(() => {
+    return form.email.length > 0 && form.password.length > 0;
+  }, [form]);
 
   return (
     <Container component="main" maxWidth="xs">
@@ -33,10 +44,11 @@ const LoginForm: React.FC = () => {
         noValidate
         className="space-y-4"
       >
-        <Typography variant="h5" align="center" className="text-2xl mt-4 mb-2">
+        <Typography variant="h5" className="mt-4 mb-2">
           Login
         </Typography>
         <TextField
+          autoFocus
           margin="normal"
           required
           fullWidth
@@ -56,7 +68,13 @@ const LoginForm: React.FC = () => {
           onChange={handleChange}
         />
 
-        <Button type="submit" fullWidth variant="contained" color="primary">
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          color="primary"
+          disabled={!isFormValid || isFormLoading}
+        >
           Login
         </Button>
       </Box>
