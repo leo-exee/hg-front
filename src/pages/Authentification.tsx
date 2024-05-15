@@ -47,7 +47,7 @@ const Authentification: React.FC = () => {
           <RegisterForm />
         )}
       </Box>
-      <Container component="main" maxWidth="xs" className="mt-4 space-y-4">
+      <Container component="main" className="mt-4 space-y-4">
         <Typography className="mt-2" align="center">
           {authType === AuthentificationType.LOGIN
             ? t("pages.authentification.not-registered")

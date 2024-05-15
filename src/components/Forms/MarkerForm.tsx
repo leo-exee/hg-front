@@ -133,7 +133,7 @@ const MarkerForm: React.FC<FormProps> = ({ entity }) => {
   }, [form]);
 
   return (
-    <Container component="main" maxWidth="xs" className="mb-4">
+    <Container component="main" className="mb-4">
       <Box
         component="form"
         onSubmit={handleSubmit}
@@ -205,6 +205,7 @@ const MarkerForm: React.FC<FormProps> = ({ entity }) => {
           />
         </FormGroup>
         <TextField
+          InputLabelProps={{ shrink: form.description }}
           margin="normal"
           multiline
           rows={4}

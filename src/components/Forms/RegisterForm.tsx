@@ -51,8 +51,12 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ destination }) => {
     );
   }, [form]);
 
+  const isPasswordValid = useMemo(() => {
+    return form.password === form.confirmPassword;
+  }, [form]);
+
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main">
       <Box
         component="form"
         onSubmit={handleSubmit}
@@ -97,6 +101,10 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ destination }) => {
           name="confirmPassword"
           type="password"
           onChange={handleChange}
+          error={!isPasswordValid}
+          helperText={
+            !isPasswordValid && t("pages.authentification.password-mismatch")
+          }
         />
 
         <Button

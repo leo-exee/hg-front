@@ -19,6 +19,7 @@
       "email": "Email",
       "password": "Password",
       "confirm-password": "Confirm Password",
+      "password-mismatch": "Passwords do not match",
       "register": "Register",
       "login": "Login",
       "already-registered": "Already registered? Login here",

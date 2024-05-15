@@ -1,6 +1,7 @@
 import {
   AppBar,
   Box,
+  Button,
   IconButton,
   Menu,
   MenuItem,
@@ -11,6 +12,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import LoginIcon from "@mui/icons-material/Login";
 import { getUserToken } from "../constants/api.constant";
 import favicon from "../assets/favicon.png";
+import fr from "../assets/fr.png";
+import us from "../assets/us.png";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
@@ -54,18 +57,27 @@ const MenuBar = () => {
           <img src={favicon} alt="Logo" className="w-8 h-8" />
           <Typography variant="body1">{t("name")}</Typography>
         </Box>
-        <IconButton
-          edge="end"
-          color="inherit"
-          aria-label="account of current user"
-          aria-haspopup="true"
-          aria-controls="menu-appbar"
-          aria-expanded={false}
-          size="large"
-          onClick={handleClick}
-        >
-          {getUserToken() ? <MenuIcon /> : <LoginIcon />}
-        </IconButton>
+        <Box className="flex items-center space-x-2">
+          <Box onClick={handleLanguage} className="cursor-pointer">
+            {i18n.language === "en" ? (
+              <img src={fr} alt="fr" className="w-6" />
+            ) : (
+              <img src={us} alt="us" className="w-6" />
+            )}
+          </Box>
+          <IconButton
+            edge="end"
+            color="inherit"
+            aria-label="account of current user"
+            aria-haspopup="true"
+            aria-controls="menu-appbar"
+            aria-expanded={false}
+            size="large"
+            onClick={handleClick}
+          >
+            {getUserToken() ? <MenuIcon /> : <LoginIcon />}
+          </IconButton>
+        </Box>
         <Menu
           id="basic-menu"
           anchorEl={anchorEl}
@@ -75,7 +87,6 @@ const MenuBar = () => {
             "aria-labelledby": "basic-button",
           }}
         >
-          <MenuItem onClick={handleLanguage}>{t("menu.language")}</MenuItem>
           <MenuItem onClick={handleLogout}>{t("menu.logout")}</MenuItem>
         </Menu>
       </Toolbar>

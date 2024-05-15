@@ -39,7 +39,7 @@ const LoginForm: React.FC = () => {
   }, [form]);
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main">
       <Box
         component="form"
         onSubmit={handleSubmit}

@@ -14,7 +14,7 @@ const translations = {
 
 i18n.use(initReactI18next).init({
   resources: translations,
-  lng: "fr",
+  lng: localStorage.getItem("language") || "fr",
   fallbackLng: "fr",
   interpolation: {
     escapeValue: false,
