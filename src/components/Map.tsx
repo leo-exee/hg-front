@@ -19,7 +19,7 @@ const Map: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [geoControlRef.current]);
 
-  return (
+  return markers ? (
     <div className="h-screen w-full">
       <ReactMapGL
         mapboxAccessToken={MAPBOX_TOKEN}
@@ -37,7 +37,7 @@ const Map: React.FC = () => {
         ))}
       </ReactMapGL>
     </div>
-  );
+  ) : null;
 };
 
 export default Map;
