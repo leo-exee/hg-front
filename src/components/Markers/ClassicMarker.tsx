@@ -64,20 +64,6 @@ const ClassicMarker: React.FC<MarkerProps> = ({ id, location, ...props }) => {
                 className="mb-1 ml-1"
               />
             )}
-            <Chip
-              avatar={<BabyChangingStationIcon />}
-              label="Baby Friendly"
-              color="primary"
-              size="small"
-              className="mb-1 ml-1"
-            />
-            <Chip
-              avatar={<BabyChangingStationIcon />}
-              label="Baby Friendly"
-              color="primary"
-              size="small"
-              className="mb-1 ml-1"
-            />
           </div>
           <Typography component="text" variant="body1">
             {props.address}
