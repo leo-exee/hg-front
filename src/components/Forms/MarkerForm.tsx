@@ -134,9 +134,6 @@ const MarkerForm: React.FC<FormProps> = ({ entity }) => {
 
   return (
     <Container component="main" maxWidth="xs" className="mb-4">
-      <Typography variant="h5" className="mt-4">
-        {t("pages.add.title")}
-      </Typography>
       <Box
         component="form"
         onSubmit={handleSubmit}

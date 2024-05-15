@@ -7,7 +7,7 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import MenuIcon from "@mui/icons-material/Menu";
 import LoginIcon from "@mui/icons-material/Login";
 import { getUserToken } from "../constants/api.constant";
 import favicon from "../assets/favicon.png";
@@ -16,13 +16,14 @@ import { useTranslation } from "react-i18next";
 import { useState } from "react";
 
 const MenuBar = () => {
+  console.log(getUserToken());
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (!getUserToken()) {
-      navigate("/dashboard");
+      navigate("/authentification");
       return;
     }
     setAnchorEl(event.currentTarget);
@@ -62,7 +63,7 @@ const MenuBar = () => {
           size="large"
           onClick={handleClick}
         >
-          {getUserToken() ? <AccountCircleIcon /> : <LoginIcon />}
+          {getUserToken() ? <MenuIcon /> : <LoginIcon />}
         </IconButton>
         <Menu
           id="basic-menu"

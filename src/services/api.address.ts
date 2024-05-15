@@ -1,24 +1,21 @@
-import axios from "axios";
 import { position } from "../contexts/LocationProvider";
+import { HERE_API_KEY } from "../constants/api.constant";
 
-const ADDRESS_BASE_URL = "https://api-adresse.data.gouv.fr";
+const HERE_BASE_URL = "https://autosuggest.search.hereapi.com/v1";
 
-const addressInstance = axios.create({
-  baseURL: ADDRESS_BASE_URL,
-  timeout: 50000,
-});
+export const LYON = {
+  longitude: 4.806397,
+  latitude: 45.7613404,
+};
 
-interface addresses_list {
-  features: address[];
-}
-
-interface address {
-  properties: {
+interface hereAddress {
+  address: {
     id: string;
     label: string;
   };
-  geometry: {
-    coordinates: [number, number];
+  position: {
+    lat: number;
+    lng: number;
   };
 }
 
@@ -28,22 +25,28 @@ export interface addressDTO {
   location: position;
 }
 
-export const getAddresses = async (query: string) => {
+export const getAddressesHERE = async (
+  query: string,
+  lat: number = LYON.latitude,
+  long: number = LYON.longitude
+) => {
   try {
     const response = await fetch(
-      `${ADDRESS_BASE_URL}/search/?q=${query}&limit=5`
+      `${HERE_BASE_URL}/discover?at=${lat},${long}&q=${query}&apiKey=${HERE_API_KEY}&limit=5`
     );
     const data = await response.json();
-    const addresses: addressDTO[] = data.features.map((address: address) => {
-      return {
-        id: address.properties.id,
-        label: address.properties.label,
-        location: {
-          lat: address.geometry.coordinates[1],
-          long: address.geometry.coordinates[0],
-        },
-      };
-    });
+    const addresses: addressDTO[] = data.items.map(
+      (hereAddress: hereAddress) => {
+        return {
+          id: hereAddress.address.id,
+          label: hereAddress.address.label,
+          location: {
+            lat: hereAddress.position.lat,
+            long: hereAddress.position.lng,
+          },
+        };
+      }
+    );
     return addresses;
   } catch (error) {
     console.error(error);

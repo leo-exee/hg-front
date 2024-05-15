@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Autocomplete, Grid, TextField, Typography } from "@mui/material";
-import { addressDTO, getAddresses } from "../../services/api.address";
+import { addressDTO, getAddressesHERE } from "../../services/api.address";
 import { useTranslation } from "react-i18next";
 
 interface AddressInputProps {
@@ -20,7 +20,7 @@ const AddressInput: React.FC<AddressInputProps> = ({ form, setForm }) => {
         setOptions(value ? [value, ...options] : options);
         return;
       }
-      const addresses = getAddresses(inputValue);
+      const addresses = getAddressesHERE(inputValue);
       addresses.then((data) => {
         setOptions(data);
       });

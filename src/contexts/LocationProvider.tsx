@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { LYON } from "../services/api.address";
 
 export interface position {
   lat: number;
@@ -12,8 +13,8 @@ interface locationContextProps {
 
 const LocationContext = createContext<locationContextProps>({
   userLocation: {
-    lat: 0,
-    long: 0,
+    lat: LYON.latitude,
+    long: LYON.longitude,
   },
   setUserLocation: () => {},
 });
@@ -26,8 +27,8 @@ export const LocationProvider: React.FC<LocationProviderProps> = ({
   children,
 }) => {
   const [userLocation, setUserLocation] = useState<position>({
-    lat: 0,
-    long: 0,
+    lat: LYON.latitude,
+    long: LYON.longitude,
   });
 
   useEffect(() => {
