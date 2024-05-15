@@ -1,9 +1,12 @@
 {
   "name": "My Trone",
   "description": "Locate and add toilets to the map",
+  "cancel": "Cancel",
+  "confirm": "Confirm",
   "menu": {
     "language": "Language",
-    "logout": "Logout"
+    "logout": "Logout",
+    "logout-confirm": "Are you sure you want to logout?"
   },
   "pages": {
     "marker": {

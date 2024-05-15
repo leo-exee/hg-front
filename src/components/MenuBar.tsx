@@ -5,6 +5,8 @@ import {
   IconButton,
   Menu,
   MenuItem,
+  Modal,
+  Paper,
   Toolbar,
   Typography,
 } from "@mui/material";
@@ -17,12 +19,14 @@ import us from "../assets/us.png";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
+import SyncIcon from "@mui/icons-material/Sync";
 
 const MenuBar = () => {
   console.log(getUserToken());
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [modalOpen, setModalOpen] = useState(false);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (!getUserToken()) {
@@ -45,6 +49,7 @@ const MenuBar = () => {
     localStorage.removeItem("token");
     sessionStorage.removeItem("token");
     navigate("/authentification");
+    setModalOpen(false);
     handleClose();
   };
   return (
@@ -57,12 +62,21 @@ const MenuBar = () => {
           <img src={favicon} alt="Logo" className="w-8 h-8" />
           <Typography variant="body1">{t("name")}</Typography>
         </Box>
-        <Box className="flex items-center space-x-2">
-          <Box onClick={handleLanguage} className="cursor-pointer">
+        <Box className="flex items-center">
+          <Box
+            onClick={handleLanguage}
+            className="cursor-pointer flex items-center"
+          >
             {i18n.language === "en" ? (
-              <img src={fr} alt="fr" className="w-6" />
+              <>
+                <img src={fr} alt="fr" className="w-6" />
+                <SyncIcon className="transform rotate-90 ml-1" />
+              </>
             ) : (
-              <img src={us} alt="us" className="w-6" />
+              <>
+                <img src={us} alt="us" className="w-6" />
+                <SyncIcon className="transform rotate-90 ml-1" />
+              </>
             )}
           </Box>
           <IconButton
@@ -87,9 +101,40 @@ const MenuBar = () => {
             "aria-labelledby": "basic-button",
           }}
         >
-          <MenuItem onClick={handleLogout}>{t("menu.logout")}</MenuItem>
+          <MenuItem
+            onClick={() => {
+              handleClose();
+              setModalOpen(true);
+            }}
+          >
+            {t("menu.logout")}
+          </MenuItem>
         </Menu>
       </Toolbar>
+      <Modal
+        open={modalOpen}
+        onClose={() => setModalOpen(false)}
+        className="flex justify-center items-center w-full h-full"
+      >
+        <Paper className="bg-white p-4 w-80 h-min">
+          <Typography variant="h6">{t("menu.logout")}</Typography>
+          <Typography>{t("menu.logout-confirm")}</Typography>
+          <Box className="flex justify-end space-x-4 mt-4">
+            <Button variant="outlined" onClick={() => setModalOpen(false)}>
+              {t("cancel")}
+            </Button>
+            <Button
+              variant="contained"
+              color="error"
+              onClick={() => {
+                handleLogout();
+              }}
+            >
+              {t("confirm")}
+            </Button>
+          </Box>
+        </Paper>
+      </Modal>
     </AppBar>
   );
 };

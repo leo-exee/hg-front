@@ -1,9 +1,12 @@
 {
   "name": "My Trône",
   "description": "Localiser et ajouter des toilettes à la carte",
+  "cancel": "Annuler",
+  "confirm": "Confirmer",
   "menu": {
     "language": "Langue",
-    "logout": "Déconnexion"
+    "logout": "Déconnexion",
+    "logout-confirm": "Êtes-vous sûr de vouloir vous déconnecter ?"
   },
   "pages": {
     "marker": {
