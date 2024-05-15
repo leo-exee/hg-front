@@ -10,7 +10,7 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 import LoginIcon from "@mui/icons-material/Login";
 import { getUserToken } from "../constants/api.constant";
 import favicon from "../assets/favicon.png";
@@ -88,7 +88,7 @@ const MenuBar = () => {
             size="large"
             onClick={handleClick}
           >
-            {getUserToken() ? <MenuIcon /> : <LoginIcon />}
+            {getUserToken() ? <MoreVertIcon /> : <LoginIcon />}
           </IconButton>
         </Box>
         <Menu
