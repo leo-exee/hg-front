@@ -22,7 +22,6 @@ import { useState } from "react";
 import SyncIcon from "@mui/icons-material/Sync";
 
 const MenuBar = () => {
-  console.log(getUserToken());
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
