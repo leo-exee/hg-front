@@ -3,12 +3,14 @@ import { RegisterDTO } from "../../types/user.type";
 import { useNavigate } from "react-router-dom";
 import { Box, Button, Container, TextField, Typography } from "@mui/material";
 import { register } from "../../services/api.user";
+import { useTranslation } from "react-i18next";
 
 interface RegisterFormProps {
   destination?: string;
 }
 
 const RegisterForm: React.FC<RegisterFormProps> = ({ destination }) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [form, setForm] = useState<RegisterDTO>({
     username: "",
@@ -58,14 +60,14 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ destination }) => {
         className="space-y-4"
       >
         <Typography variant="h5" className="mt-4 mb-2">
-          Register
+          {t("pages.authentification.register")}
         </Typography>
         <TextField
           margin="normal"
           required
           fullWidth
           id="username"
-          label="Username"
+          label={t("pages.authentification.name")}
           name="username"
           autoFocus
           onChange={handleChange}
@@ -75,7 +77,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ destination }) => {
           required
           fullWidth
           id="email"
-          label="Email"
+          label={t("pages.authentification.email")}
           name="email"
           onChange={handleChange}
         />
@@ -84,7 +86,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ destination }) => {
           required
           fullWidth
           id="password"
-          label="Password"
+          label={t("pages.authentification.password")}
           name="password"
           type="password"
           onChange={handleChange}
@@ -94,7 +96,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ destination }) => {
           required
           fullWidth
           id="confirmPassword"
-          label="Confirm Password"
+          label={t("pages.authentification.confirm-password")}
           name="confirmPassword"
           type="password"
           onChange={handleChange}
@@ -107,7 +109,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ destination }) => {
           color="primary"
           disabled={!isFormValid || isFormLoading}
         >
-          Register
+          {t("pages.authentification.register")}
         </Button>
       </Box>
     </Container>

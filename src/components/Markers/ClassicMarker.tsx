@@ -14,12 +14,14 @@ import {
 import AccessibleIcon from "@mui/icons-material/Accessible";
 import BabyChangingStationIcon from "@mui/icons-material/BabyChangingStation";
 import GoogleIcon from "@mui/icons-material/Google";
+import { useTranslation } from "react-i18next";
 
 interface MarkerProps extends ToiletDTO {
   key: string;
 }
 
 const ClassicMarker: React.FC<MarkerProps> = ({ id, location, ...props }) => {
+  const { t } = useTranslation();
   const [showPopup, setShowPopup] = useState<boolean>(false);
   return (
     <>
@@ -49,7 +51,7 @@ const ClassicMarker: React.FC<MarkerProps> = ({ id, location, ...props }) => {
             {props.information.handicapFriendly && (
               <Chip
                 avatar={<AccessibleIcon />}
-                label="Handicap Friendly"
+                label={t("pages.marker.handicap-friendly")}
                 color="primary"
                 size="small"
                 className="mb-1 ml-1"
@@ -58,7 +60,7 @@ const ClassicMarker: React.FC<MarkerProps> = ({ id, location, ...props }) => {
             {props.information.babyFriendly && (
               <Chip
                 avatar={<BabyChangingStationIcon />}
-                label="Baby Friendly"
+                label={t("pages.marker.baby-changing")}
                 color="primary"
                 size="small"
                 className="mb-1 ml-1"
@@ -78,7 +80,7 @@ const ClassicMarker: React.FC<MarkerProps> = ({ id, location, ...props }) => {
           <Box className="space-y-2">
             <Box>
               <Typography component="legend" variant="body2">
-                Cleanliness
+                {t("pages.marker.cleanliness")}
               </Typography>
               <div className="flex items-center">
                 <Rating
@@ -94,7 +96,7 @@ const ClassicMarker: React.FC<MarkerProps> = ({ id, location, ...props }) => {
             </Box>
             <Box>
               <Typography component="legend" variant="body2">
-                Accessbility
+                {t("pages.marker.accessibility")}
               </Typography>
               <div className="flex items-center">
                 <Rating
@@ -110,7 +112,7 @@ const ClassicMarker: React.FC<MarkerProps> = ({ id, location, ...props }) => {
             </Box>
             <Box>
               <Typography component="legend" variant="body2">
-                State
+                {t("pages.marker.state")}
               </Typography>
               <div className="flex items-center">
                 <Rating
@@ -125,7 +127,9 @@ const ClassicMarker: React.FC<MarkerProps> = ({ id, location, ...props }) => {
               </div>
             </Box>
             <Box>
-              <Typography component="legend">Total rating</Typography>
+              <Typography component="legend">
+                {t("pages.marker.total-rate")}
+              </Typography>
               <div className="flex items-center">
                 <Rating
                   value={props.information.rating}

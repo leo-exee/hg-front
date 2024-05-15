@@ -29,19 +29,24 @@ export interface addressDTO {
 }
 
 export const getAddresses = async (query: string) => {
-  const response = await fetch(
-    `${ADDRESS_BASE_URL}/search/?q=${query}&limit=5`
-  );
-  const data = await response.json();
-  const addresses: addressDTO[] = data.features.map((address: address) => {
-    return {
-      id: address.properties.id,
-      label: address.properties.label,
-      location: {
-        lat: address.geometry.coordinates[1],
-        long: address.geometry.coordinates[0],
-      },
-    };
-  });
-  return addresses;
+  try {
+    const response = await fetch(
+      `${ADDRESS_BASE_URL}/search/?q=${query}&limit=5`
+    );
+    const data = await response.json();
+    const addresses: addressDTO[] = data.features.map((address: address) => {
+      return {
+        id: address.properties.id,
+        label: address.properties.label,
+        location: {
+          lat: address.geometry.coordinates[1],
+          long: address.geometry.coordinates[0],
+        },
+      };
+    });
+    return addresses;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
 };

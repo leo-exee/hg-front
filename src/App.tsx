@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "mapbox-gl/dist/mapbox-gl.css";
-
-//import { useTranslation } from 'react-i18next';
-// import "./i18n";
+import { useTranslation } from "react-i18next";
+import "./translations/i18n";
 import Layout from "./Layout";
 import Home from "./pages/Home";
 import Detail from "./pages/Detail";
@@ -16,10 +15,14 @@ import { ThemeProvider } from "@emotion/react";
 import { createTheme } from "@mui/material";
 
 function App() {
+  const { i18n } = useTranslation();
   const [token, setToken] = React.useState<string | null>(getUserToken());
   useEffect(() => {
     setToken(getUserToken());
   }, []);
+  useEffect(() => {
+    document.documentElement.lang = i18n.language;
+  }, [i18n.language]);
 
   const theme = createTheme({
     palette: {

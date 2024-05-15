@@ -1,0 +1,43 @@
+{
+  "name": "My Trone",
+  "description": "Locate and add toilets to the map",
+  "menu": {
+    "language": "Language",
+    "logout": "Logout"
+  },
+  "pages": {
+    "marker": {
+      "handicap-friendly": "Handicap Friendly",
+      "baby-changing": "Baby Changing",
+      "cleanliness": "Cleanliness",
+      "state": "State",
+      "accessibility": "Accessibility",
+      "total-rate": "Total Rating"
+    },
+    "authentification": {
+      "name": "Username",
+      "email": "Email",
+      "password": "Password",
+      "confirm-password": "Confirm Password",
+      "register": "Register",
+      "login": "Login",
+      "already-registered": "Already registered? Login here",
+      "not-registered": "Not registered? Register here"
+    },
+    "add": {
+      "title": "Add a toilets",
+      "no-options": "No locations found",
+      "name": "Name",
+      "address": "Address",
+      "description": "Description",
+      "handicap-friendly": "Handicap Friendly",
+      "baby-changing": "Baby Changing",
+      "cleanliness": "Cleanliness",
+      "state": "State",
+      "accessibility": "Accessibility",
+      "generate-description": "Generate Description",
+      "after-validation": "After validation, the toilets will not be visible immediately on the map. Be patient!",
+      "create": "Create"
+    }
+  }
+}

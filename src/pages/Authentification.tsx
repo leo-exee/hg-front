@@ -3,20 +3,21 @@ import { Box, Button, Container, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import LoginForm from "../components/Forms/LoginForm";
 import RegisterForm from "../components/Forms/RegisterForm";
+import { useTranslation } from "react-i18next";
 
 enum AuthentificationType {
   LOGIN = "login",
   REGISTER = "register",
 }
 
-const Authentification: React.FC<{ redirection?: string }> = ({
-  redirection = "/dashboard",
-}) => {
+const Authentification: React.FC = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   useEffect(() => {
     navigate(`/authentification`);
   }, []);
+
   const [authType, setAuthType] = useState<AuthentificationType>(
     AuthentificationType.REGISTER
   );
@@ -33,8 +34,8 @@ const Authentification: React.FC<{ redirection?: string }> = ({
       <Container component="main" maxWidth="xs" className="mt-4 space-y-4">
         <Typography className="mt-2" align="center">
           {authType === AuthentificationType.LOGIN
-            ? "Don't have an account?"
-            : "Already have an account?"}
+            ? t("pages.authentification.not-registered")
+            : t("pages.authentification.already-registered")}
         </Typography>
         <Button
           className="w-full"
@@ -48,7 +49,9 @@ const Authentification: React.FC<{ redirection?: string }> = ({
             )
           }
         >
-          {authType === AuthentificationType.LOGIN ? "Register" : "Login"}
+          {authType === AuthentificationType.LOGIN
+            ? t("pages.authentification.register")
+            : t("pages.authentification.login")}
         </Button>
       </Container>
     </>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Autocomplete, Grid, TextField, Typography } from "@mui/material";
 import { addressDTO, getAddresses } from "../../services/api.address";
+import { useTranslation } from "react-i18next";
 
 interface AddressInputProps {
   form: any;
@@ -8,13 +9,14 @@ interface AddressInputProps {
 }
 
 const AddressInput: React.FC<AddressInputProps> = ({ form, setForm }) => {
+  const { t } = useTranslation();
   const [value, setValue] = useState<addressDTO | null>(null);
   const [inputValue, setInputValue] = useState("");
   const [options, setOptions] = useState<addressDTO[]>([]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (inputValue === "" || inputValue.length < 3) {
+      if (inputValue === "" || inputValue.length < 5) {
         setOptions(value ? [value, ...options] : options);
         return;
       }
@@ -30,7 +32,6 @@ const AddressInput: React.FC<AddressInputProps> = ({ form, setForm }) => {
   return (
     <Autocomplete
       aria-required
-      id="google-map-demo"
       getOptionLabel={(option) =>
         typeof option === "string" ? option : option.label
       }
@@ -40,7 +41,7 @@ const AddressInput: React.FC<AddressInputProps> = ({ form, setForm }) => {
       includeInputInList
       filterSelectedOptions
       value={value}
-      noOptionsText="No locations"
+      noOptionsText={t("pages.add.no-options")}
       onChange={(event: any, newValue: addressDTO | null) => {
         setOptions(newValue ? [newValue, ...options] : options);
         setValue(newValue);
@@ -54,7 +55,7 @@ const AddressInput: React.FC<AddressInputProps> = ({ form, setForm }) => {
         setInputValue(newInputValue);
       }}
       renderInput={(params) => (
-        <TextField {...params} label="Address" fullWidth />
+        <TextField {...params} label={t("pages.add.address")} fullWidth />
       )}
       renderOption={(props, option) => {
         return (

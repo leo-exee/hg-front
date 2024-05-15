@@ -3,8 +3,10 @@ import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginDTO } from "../../types/user.type";
 import { login } from "../../services/api.user";
+import { useTranslation } from "react-i18next";
 
 const LoginForm: React.FC = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [form, setForm] = useState<LoginDTO>({
     email: "",
@@ -45,7 +47,7 @@ const LoginForm: React.FC = () => {
         className="space-y-4"
       >
         <Typography variant="h5" className="mt-4 mb-2">
-          Login
+          {t("pages.authentification.login")}
         </Typography>
         <TextField
           autoFocus
@@ -53,7 +55,7 @@ const LoginForm: React.FC = () => {
           required
           fullWidth
           id="email"
-          label="Email"
+          label={t("pages.authentification.email")}
           name="email"
           onChange={handleChange}
         />
@@ -62,7 +64,7 @@ const LoginForm: React.FC = () => {
           required
           fullWidth
           id="password"
-          label="Password"
+          label={t("pages.authentification.password")}
           name="password"
           type="password"
           onChange={handleChange}
@@ -75,7 +77,7 @@ const LoginForm: React.FC = () => {
           color="primary"
           disabled={!isFormValid || isFormLoading}
         >
-          Login
+          {t("pages.authentification.login")}
         </Button>
       </Box>
     </Container>

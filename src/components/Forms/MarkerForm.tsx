@@ -16,6 +16,7 @@ import { postToilet } from "../../services/api.toilets";
 import { useNavigate } from "react-router-dom";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import { describeToilet } from "../../services/api.ai";
+import { useTranslation } from "react-i18next";
 
 interface FormProps {
   entity?: ToiletDTO;
@@ -43,6 +44,7 @@ const defaultForm: Partial<ToiletDTO> = {
 };
 
 const MarkerForm: React.FC<FormProps> = ({ entity }) => {
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [form, setForm] = useState<any>(
     entity ? entity : (defaultForm as Partial<ToiletDTO>)
@@ -79,7 +81,7 @@ const MarkerForm: React.FC<FormProps> = ({ entity }) => {
         form.reviews = [];
         const response = postToilet(form);
         response.then((res) => {
-          navigate(`/dashboard`);
+          navigate("/");
         });
       } catch (error) {
         setIsFormLoading(false);
@@ -100,7 +102,7 @@ const MarkerForm: React.FC<FormProps> = ({ entity }) => {
         state: form.information.state,
         babyFriendly: form.information.babyFriendly,
         handicapFriendly: form.information.handicapFriendly,
-        language: "EN",
+        language: i18n.language.toUpperCase(),
       };
       const description = describeToilet(content);
       description.then((res) => {
@@ -133,7 +135,7 @@ const MarkerForm: React.FC<FormProps> = ({ entity }) => {
   return (
     <Container component="main" maxWidth="xs" className="mb-4">
       <Typography variant="h5" className="mt-4">
-        {entity ? "Update Toilet" : "Add Toilet"}
+        {t("pages.add.title")}
       </Typography>
       <Box
         component="form"
@@ -146,28 +148,32 @@ const MarkerForm: React.FC<FormProps> = ({ entity }) => {
           required
           fullWidth
           id="name"
-          label="Name"
+          label={t("pages.add.name")}
           name="name"
           autoFocus
           value={form.name}
           onChange={handleChange}
         />
         <AddressInput form={form} setForm={setForm} />
-        <Typography variant="subtitle1">State</Typography>
+        <Typography variant="subtitle1">{t("pages.add.state")}</Typography>
         <Rating
           name="state"
           value={form.information?.state}
           onChange={handleRatingChange}
           aria-required
         />
-        <Typography variant="subtitle1">Cleanliness</Typography>
+        <Typography variant="subtitle1">
+          {t("pages.add.cleanliness")}
+        </Typography>
         <Rating
           name="cleanliness"
           value={form.information?.cleanliness}
           onChange={handleRatingChange}
           aria-required
         />
-        <Typography variant="subtitle1">Accessibility</Typography>
+        <Typography variant="subtitle1">
+          {t("pages.add.accessibility")}
+        </Typography>
         <Rating
           name="accessbility"
           value={form.information?.accessbility}
@@ -184,7 +190,7 @@ const MarkerForm: React.FC<FormProps> = ({ entity }) => {
                 onChange={handleCheckboxChange}
               />
             }
-            label="Baby Friendly"
+            label={t("pages.add.baby-changing")}
             required
           />
 
@@ -197,7 +203,7 @@ const MarkerForm: React.FC<FormProps> = ({ entity }) => {
                 onChange={handleCheckboxChange}
               />
             }
-            label="Handicap Friendly"
+            label={t("pages.add.handicap-friendly")}
             required
           />
         </FormGroup>
@@ -207,7 +213,7 @@ const MarkerForm: React.FC<FormProps> = ({ entity }) => {
           rows={4}
           fullWidth
           id="description"
-          label="Description"
+          label={t("pages.add.description")}
           name="description"
           value={form.description}
           onChange={handleChange}
@@ -221,14 +227,13 @@ const MarkerForm: React.FC<FormProps> = ({ entity }) => {
           onClick={handleGenerateDescription}
           disabled={!isGeneratingAvailable || isGenerating}
         >
-          Generate description
+          {t("pages.add.generate-description")}
         </Button>
         <Typography
           variant="body2"
           className="text-gray-500 text-center italic"
         >
-          After validation, the toilet will not be visible immediately. Be
-          patient!
+          {t("pages.add.after-validation")}
         </Typography>
         <Button
           type="submit"
@@ -236,7 +241,7 @@ const MarkerForm: React.FC<FormProps> = ({ entity }) => {
           variant="contained"
           disabled={!isFormValid || isFormLoading}
         >
-          {entity ? "Update" : "Create"}
+          {t("pages.add.create")}
         </Button>
       </Box>
     </Container>
