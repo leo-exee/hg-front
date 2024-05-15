@@ -34,6 +34,7 @@ const MenuBar = () => {
 
   const handleLanguage = () => {
     i18n.changeLanguage(i18n.language === "en" ? "fr" : "en");
+    localStorage.setItem("language", i18n.language);
     handleClose();
   };
 
