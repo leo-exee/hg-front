@@ -32,7 +32,7 @@ const Map: React.FC = () => {
       >
         <NavigationControl />
         <GeolocateControl position="top-right" ref={geoControlRef} />
-        {markers.map(({ id, ...props }: ToiletDTO) => (
+        {markers?.map(({ id, ...props }: ToiletDTO) => (
           <ClassicMarker key={id} id={id} {...props} />
         ))}
       </ReactMapGL>
