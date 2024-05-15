@@ -12,12 +12,10 @@ const MenuBar = () => {
       <Toolbar variant="dense" className="flex justify-between items-center">
         <Box
           onClick={() => navigate("/")}
-          className="flex items-center cursor-pointer"
+          className="flex items-center cursor-pointer space-x-2"
         >
           <img src={favicon} alt="Logo" className="w-8 h-8" />
-          <Typography variant="body1" component="div" className="ml-2">
-            My Trone
-          </Typography>
+          <Typography variant="body1">My Trone</Typography>
         </Box>
         <IconButton
           edge="end"

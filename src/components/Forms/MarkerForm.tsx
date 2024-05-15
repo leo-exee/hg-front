@@ -215,13 +215,21 @@ const MarkerForm: React.FC<FormProps> = ({ entity }) => {
         />
         <Button
           fullWidth
-          variant="outlined"
+          variant="contained"
+          color="secondary"
           startIcon={<AutoAwesomeIcon />}
           onClick={handleGenerateDescription}
           disabled={!isGeneratingAvailable || isGenerating}
         >
           Generate description
         </Button>
+        <Typography
+          variant="body2"
+          className="text-gray-500 text-center italic"
+        >
+          After validation, the toilet will not be visible immediately. Be
+          patient!
+        </Typography>
         <Button
           type="submit"
           fullWidth

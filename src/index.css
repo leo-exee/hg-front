@@ -34,3 +34,7 @@ code {
 .mapboxgl-popup-content {
   padding: 0 !important;
 }
+
+.MuiSvgIcon-root {
+  background: none !important;
+}

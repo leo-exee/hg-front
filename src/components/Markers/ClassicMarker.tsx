@@ -45,13 +45,14 @@ const ClassicMarker: React.FC<MarkerProps> = ({ id, location, ...props }) => {
           <Typography gutterBottom variant="h5">
             {props.name}
           </Typography>
-          <div className="flex items-center space-x-2">
+          <div className="flex flex-wrap">
             {props.information.handicapFriendly && (
               <Chip
                 avatar={<AccessibleIcon />}
                 label="Handicap Friendly"
                 color="primary"
                 size="small"
+                className="mb-1 ml-1"
               />
             )}
             {props.information.babyFriendly && (
@@ -60,8 +61,23 @@ const ClassicMarker: React.FC<MarkerProps> = ({ id, location, ...props }) => {
                 label="Baby Friendly"
                 color="primary"
                 size="small"
+                className="mb-1 ml-1"
               />
             )}
+            <Chip
+              avatar={<BabyChangingStationIcon />}
+              label="Baby Friendly"
+              color="primary"
+              size="small"
+              className="mb-1 ml-1"
+            />
+            <Chip
+              avatar={<BabyChangingStationIcon />}
+              label="Baby Friendly"
+              color="primary"
+              size="small"
+              className="mb-1 ml-1"
+            />
           </div>
           <Typography component="text" variant="body1">
             {props.address}

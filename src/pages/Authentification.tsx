@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Button, Container, Typography } from "@mui/material";
+import { Box, Button, Container, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import LoginForm from "../components/Forms/LoginForm";
 import RegisterForm from "../components/Forms/RegisterForm";
@@ -23,20 +23,23 @@ const Authentification: React.FC<{ redirection?: string }> = ({
 
   return (
     <>
-      {authType === AuthentificationType.LOGIN ? (
-        <LoginForm />
-      ) : (
-        <RegisterForm />
-      )}
-      <Container component="main" maxWidth="xs" className="mt-4">
-        <Typography className="mb-2" align="center">
+      <Box className="mt-16">
+        {authType === AuthentificationType.LOGIN ? (
+          <LoginForm />
+        ) : (
+          <RegisterForm />
+        )}
+      </Box>
+      <Container component="main" maxWidth="xs" className="mt-4 space-y-4">
+        <Typography className="mt-2" align="center">
           {authType === AuthentificationType.LOGIN
             ? "Don't have an account?"
             : "Already have an account?"}
         </Typography>
         <Button
           className="w-full"
-          variant="outlined"
+          variant="contained"
+          color="secondary"
           onClick={() =>
             setAuthType(
               authType === AuthentificationType.LOGIN
