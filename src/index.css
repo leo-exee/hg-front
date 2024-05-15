@@ -26,6 +26,11 @@ code {
   display: none;
 }
 
+.mapboxgl-ctrl-top-right {
+  top: 50px !important;
+  right: 0 !important;
+}
+
 .mapboxgl-popup-content {
   padding: 0 !important;
 }

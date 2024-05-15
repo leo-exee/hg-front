@@ -1,12 +1,24 @@
-import { AppBar, IconButton, Toolbar } from "@mui/material";
+import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LoginIcon from "@mui/icons-material/Login";
 import { getUserToken } from "../constants/api.constant";
+import favicon from "../assets/favicon.png";
+import { useNavigate } from "react-router-dom";
 
 const MenuBar = () => {
+  const navigate = useNavigate();
   return (
-    <AppBar position="static">
+    <AppBar position="fixed">
       <Toolbar variant="dense" className="flex justify-between items-center">
+        <Box
+          onClick={() => navigate("/")}
+          className="flex items-center cursor-pointer"
+        >
+          <img src={favicon} alt="Logo" className="w-8 h-8" />
+          <Typography variant="body1" component="div" className="ml-2">
+            My Trone
+          </Typography>
+        </Box>
         <IconButton
           edge="end"
           color="inherit"

@@ -1,13 +1,19 @@
-import { Marker, Popup } from "react-map-gl";
+import { Marker } from "react-map-gl";
 import FmdGoodIcon from "@mui/icons-material/FmdGood";
 import { useState } from "react";
 import { ToiletDTO } from "../../types/toilets.type";
-import { Button, IconButton, Paper, Rating, Typography } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
+import {
+  Box,
+  Button,
+  Chip,
+  Modal,
+  Paper,
+  Rating,
+  Typography,
+} from "@mui/material";
 import AccessibleIcon from "@mui/icons-material/Accessible";
 import BabyChangingStationIcon from "@mui/icons-material/BabyChangingStation";
 import GoogleIcon from "@mui/icons-material/Google";
-import VisibilityIcon from "@mui/icons-material/Visibility";
 
 interface MarkerProps extends ToiletDTO {
   key: string;
@@ -18,94 +24,132 @@ const ClassicMarker: React.FC<MarkerProps> = ({ id, location, ...props }) => {
   return (
     <>
       <Marker key={id} latitude={location.lat} longitude={location.long}>
-        <FmdGoodIcon
-          className="text-blue-500 text-3xl cursor-pointer"
+        <Box
           onClick={(e) => {
             setShowPopup(true);
           }}
-        />
-      </Marker>
-      {showPopup && (
-        <Popup
-          latitude={location.lat}
-          longitude={location.long}
-          closeOnMove={true}
-          closeButton={false}
-          closeOnClick={false}
-          onClose={() => setShowPopup(false)}
-          anchor="bottom"
         >
-          <IconButton
-            size="small"
-            onClick={() => setShowPopup(false)}
-            className="absolute top-0 right-0"
-          >
-            <CloseIcon />
-          </IconButton>
-          <Paper className="p-4" elevation={3}>
-            <Typography
-              gutterBottom
-              variant="h6"
-              className="overflow-hidden overflow-ellipsis whitespace-nowrap"
-            >
-              {props.name}
-            </Typography>
-            <div className="flex items-center mb-2">
-              <Rating
-                value={props.information.rating}
-                readOnly
-                precision={0.5}
+          <FmdGoodIcon
+            className="cursor-pointer"
+            fontSize="large"
+            color="primary"
+          />
+        </Box>
+      </Marker>
+      <Modal
+        open={showPopup}
+        onClose={() => setShowPopup(false)}
+        className="m-4 flex justify-center items-center"
+      >
+        <Paper className="p-4 space-y-4 flex flex-col" elevation={3}>
+          <Typography gutterBottom variant="h5">
+            {props.name}
+          </Typography>
+          <div className="flex items-center space-x-2">
+            {props.information.handicapFriendly && (
+              <Chip
+                avatar={<AccessibleIcon />}
+                label="Handicap Friendly"
+                color="primary"
                 size="small"
               />
-              <Typography variant="body2" className="ml-2">
-                {props.information.rating.toFixed()}/5
+            )}
+            {props.information.babyFriendly && (
+              <Chip
+                avatar={<BabyChangingStationIcon />}
+                label="Baby Friendly"
+                color="primary"
+                size="small"
+              />
+            )}
+          </div>
+          <Typography component="text" variant="body1">
+            {props.address}
+          </Typography>
+          <Typography
+            gutterBottom
+            variant="body2"
+            className="max-h-40 overflow-y-auto"
+          >
+            {props.description}
+          </Typography>
+          <Box className="space-y-2">
+            <Box>
+              <Typography component="legend" variant="body2">
+                Cleanliness
               </Typography>
-            </div>
-            <Typography
-              gutterBottom
-              variant="body1"
-              className="overflow-hidden overflow-ellipsis whitespace-nowrap"
-            >
-              {props.address}
-            </Typography>
-            <Typography
-              gutterBottom
-              variant="body2"
-              className="overflow-hidden overflow-ellipsis whitespace-nowrap"
-            >
-              {props.description}
-            </Typography>
-            <div className="flex items-center my-2">
-              {props.information.handicapFriendly && (
-                <AccessibleIcon fontSize="small" />
-              )}
-              {props.information.babyFriendly && (
-                <BabyChangingStationIcon fontSize="small" />
-              )}
-            </div>
-            <Button
-              startIcon={<VisibilityIcon />}
-              href={`/map/${id}`}
-              variant="contained"
-              size="small"
-              className="text-xs capitalize"
-            >
-              View Details
-            </Button>
-
+              <div className="flex items-center">
+                <Rating
+                  value={props.information.cleanliness}
+                  readOnly
+                  precision={0.5}
+                  size="small"
+                />
+                <Typography variant="body2" className="ml-2">
+                  {props.information.cleanliness.toFixed()}/5
+                </Typography>
+              </div>
+            </Box>
+            <Box>
+              <Typography component="legend" variant="body2">
+                Accessbility
+              </Typography>
+              <div className="flex items-center">
+                <Rating
+                  value={props.information.accessbility}
+                  readOnly
+                  precision={0.5}
+                  size="small"
+                />
+                <Typography variant="body2" className="ml-2">
+                  {props.information.accessbility.toFixed()}/5
+                </Typography>
+              </div>
+            </Box>
+            <Box>
+              <Typography component="legend" variant="body2">
+                State
+              </Typography>
+              <div className="flex items-center">
+                <Rating
+                  value={props.information.state}
+                  readOnly
+                  precision={0.5}
+                  size="small"
+                />
+                <Typography variant="body2" className="ml-2">
+                  {props.information.state.toFixed()}/5
+                </Typography>
+              </div>
+            </Box>
+            <Box>
+              <Typography component="legend">Total rating</Typography>
+              <div className="flex items-center">
+                <Rating
+                  value={props.information.rating}
+                  readOnly
+                  precision={0.5}
+                  size="small"
+                />
+                <Typography variant="body2" className="ml-2">
+                  {props.information.rating.toFixed()}/5
+                </Typography>
+              </div>
+            </Box>
+          </Box>
+          <Box className="flex align-center justify-center">
             <Button
               startIcon={<GoogleIcon />}
               href={`https://www.google.com/maps/search/?api=1&query=${location.lat},${location.long}`}
               target="_blank"
               variant="contained"
-              size="small"
-              className="mt-2 text-xs capitalize"
+              className="mt-2 text-xs w-full max-w-xs"
             >
               Google Maps
             </Button>
-          </Paper>
-        </Popup>
-      )}
+          </Box>
+        </Paper>
+      </Modal>
     </>
   );
 };
