@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import { Box, Button, Container, Typography } from "@mui/material";
+import { Box, Button, Container, IconButton, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import LoginForm from "../components/Forms/LoginForm";
 import RegisterForm from "../components/Forms/RegisterForm";
 import { useTranslation } from "react-i18next";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 enum AuthentificationType {
   LOGIN = "login",
@@ -24,7 +25,22 @@ const Authentification: React.FC = () => {
 
   return (
     <>
-      <Box className="mt-16">
+      <Box className="flex items-center mt-16">
+        <IconButton
+          size="large"
+          onClick={() => navigate("/")}
+          aria-label={t("back")}
+          color="primary"
+        >
+          <ArrowBackIcon />
+        </IconButton>
+        <Typography variant="h5" className="mt-4">
+          {authType === AuthentificationType.LOGIN
+            ? t("pages.authentification.login")
+            : t("pages.authentification.register")}
+        </Typography>
+      </Box>
+      <Box>
         {authType === AuthentificationType.LOGIN ? (
           <LoginForm />
         ) : (

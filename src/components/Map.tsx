@@ -1,14 +1,14 @@
 import ReactMapGL, { GeolocateControl, NavigationControl } from "react-map-gl";
 import { useUserLocationContext } from "../contexts/LocationProvider";
-import { useMarkerContext } from "../contexts/MarkerProvider";
 import ClassicMarker from "./Markers/ClassicMarker";
 import { MAPBOX_TOKEN } from "../constants/api.constant";
 import { ToiletDTO } from "../types/toilets.type";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { getToilets } from "../services/api.toilets";
 
 const Map: React.FC = () => {
   const { userLocation } = useUserLocationContext();
-  const { markers } = useMarkerContext();
+  const [markers, setMarkers] = useState<ToiletDTO[]>([]);
 
   const geoControlRef =
     useRef<mapboxgl.GeolocateControl>() as React.MutableRefObject<mapboxgl.GeolocateControl>;
@@ -17,6 +17,13 @@ const Map: React.FC = () => {
     geoControlRef.current?.trigger();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [geoControlRef.current]);
+  useEffect(() => {
+    const fetchToilets = async () => {
+      const response = await getToilets();
+      setMarkers(response);
+    };
+    fetchToilets();
+  }, []);
 
   return markers ? (
     <div className="h-screen w-full">

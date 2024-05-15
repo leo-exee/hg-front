@@ -40,7 +40,7 @@ const MenuBar = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     sessionStorage.removeItem("token");
-    navigate("/");
+    navigate("/authentification");
     handleClose();
   };
   return (

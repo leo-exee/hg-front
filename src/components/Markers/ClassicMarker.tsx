@@ -89,9 +89,6 @@ const ClassicMarker: React.FC<MarkerProps> = ({ id, location, ...props }) => {
                   precision={0.5}
                   size="small"
                 />
-                <Typography variant="body2" className="ml-2">
-                  {props.information.cleanliness.toFixed()}/5
-                </Typography>
               </div>
             </Box>
             <Box>
@@ -105,9 +102,6 @@ const ClassicMarker: React.FC<MarkerProps> = ({ id, location, ...props }) => {
                   precision={0.5}
                   size="small"
                 />
-                <Typography variant="body2" className="ml-2">
-                  {props.information.accessbility.toFixed()}/5
-                </Typography>
               </div>
             </Box>
             <Box>
@@ -121,9 +115,6 @@ const ClassicMarker: React.FC<MarkerProps> = ({ id, location, ...props }) => {
                   precision={0.5}
                   size="small"
                 />
-                <Typography variant="body2" className="ml-2">
-                  {props.information.state.toFixed()}/5
-                </Typography>
               </div>
             </Box>
             <Box>
@@ -137,9 +128,6 @@ const ClassicMarker: React.FC<MarkerProps> = ({ id, location, ...props }) => {
                   precision={0.5}
                   size="small"
                 />
-                <Typography variant="body2" className="ml-2">
-                  {props.information.rating.toFixed()}/5
-                </Typography>
               </div>
             </Box>
           </Box>

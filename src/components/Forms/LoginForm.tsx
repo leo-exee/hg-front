@@ -46,9 +46,6 @@ const LoginForm: React.FC = () => {
         noValidate
         className="space-y-4"
       >
-        <Typography variant="h5" className="mt-4 mb-2">
-          {t("pages.authentification.login")}
-        </Typography>
         <TextField
           autoFocus
           margin="normal"
