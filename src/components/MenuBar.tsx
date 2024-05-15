@@ -21,7 +21,10 @@ const MenuBar = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    if (!getUserToken()) navigate("/dashboard");
+    if (!getUserToken()) {
+      navigate("/dashboard");
+      return;
+    }
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
