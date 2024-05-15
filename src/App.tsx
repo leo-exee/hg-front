@@ -37,7 +37,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route element={<Layout />}>
-            <Route index element={<Home />} />
+            <Route index path="/" element={<Home />} />
             <Route path="/map/:id" element={<Detail />} />
             <Route
               path="/dashboard"
