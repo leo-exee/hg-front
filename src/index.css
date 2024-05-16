@@ -60,13 +60,8 @@ button.mapboxgl-ctrl-zoom-in:hover {
   background: #156f8b !important;
 }
 
-button.mapboxgl-ctrl-zoom-in:active {
-  background: #308eab !important;
-}
-
 button.mapboxgl-ctrl-zoom-out {
   background: #308eab !important;
-  border-radius: 0 0 50% 50% !important;
   width: 56px !important;
   height: 56px !important;
   padding: 12px 12px !important;
@@ -84,12 +79,23 @@ button.mapboxgl-ctrl-zoom-out:hover {
   background: #156f8b !important;
 }
 
-button.mapboxgl-ctrl-zoom-out:active {
+button.mapboxgl-ctrl-compass {
   background: #308eab !important;
+  border-radius: 0 0 50% 50% !important;
+  width: 56px !important;
+  height: 56px !important;
+  padding: 12px 12px !important;
+  border: none !important;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  --webkit-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
 
-button.mapboxgl-ctrl-compass {
-  display: none !important;
+button.mapboxgl-ctrl-compass:hover {
+  background: #156f8b !important;
 }
 
 button.mapboxgl-ctrl-geolocate {
@@ -110,10 +116,6 @@ button.mapboxgl-ctrl-geolocate {
 
 button.mapboxgl-ctrl-geolocate:hover {
   background: #156f8b !important;
-}
-
-button.mapboxgl-ctrl-geolocate:active {
-  background: #308eab !important;
 }
 
 .mapboxgl-ctrl-icon {
