@@ -17,12 +17,9 @@ const Map: React.FC = () => {
     geoControlRef.current?.trigger();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [geoControlRef.current]);
+
   useEffect(() => {
-    const fetchToilets = async () => {
-      const response = await getToilets();
-      setMarkers(response);
-    };
-    fetchToilets();
+    getToilets().then((toilets) => setMarkers(toilets));
   }, []);
 
   return markers ? (
