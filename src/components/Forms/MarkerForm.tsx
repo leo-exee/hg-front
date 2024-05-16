@@ -227,12 +227,14 @@ const MarkerForm: React.FC<FormProps> = ({ entity }) => {
         >
           {t("pages.add.generate-description")}
         </Button>
-        <Typography
-          variant="body2"
-          className="text-gray-500 text-center italic"
-        >
-          {t("pages.add.after-validation")}
-        </Typography>
+        <Box className="py-4">
+          <Typography
+            variant="body2"
+            className="text-gray-500 text-center italic"
+          >
+            {t("pages.add.after-validation")}
+          </Typography>
+        </Box>
         <Button
           type="submit"
           fullWidth
