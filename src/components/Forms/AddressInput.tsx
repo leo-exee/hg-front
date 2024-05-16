@@ -25,7 +25,7 @@ const AddressInput: React.FC<AddressInputProps> = ({ form, setForm }) => {
       addresses.then((data) => {
         setOptions(data);
       });
-    }, 5); // 5ms debounce
+    }, 5);
 
     return () => clearTimeout(timer);
   }, [inputValue, value]);
