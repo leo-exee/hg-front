@@ -18,6 +18,9 @@ function App() {
   }, [i18n.language]);
 
   const theme = createTheme({
+    typography: {
+      fontFamily: "quicksand",
+    },
     palette: {
       primary: {
         main: "#125C73",
