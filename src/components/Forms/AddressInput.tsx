@@ -18,7 +18,7 @@ const AddressInput: React.FC<AddressInputProps> = ({ form, setForm }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       if (inputValue === "" || inputValue.length < 5) {
-        setOptions(value ? [value, ...options] : options);
+        setOptions([]);
         return;
       }
       const addresses = getAddressesHERE(inputValue);
