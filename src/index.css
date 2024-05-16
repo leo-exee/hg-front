@@ -41,23 +41,43 @@ body {
 }
 
 button.mapboxgl-ctrl-zoom-in {
-  background: #125c73 !important;
+  background: #308eab !important;
   border-radius: 50% 50% 0 0 !important;
   width: 56px !important;
   height: 56px !important;
   padding: 12px 12px !important;
   margin: 0 0 !important;
   border: none !important;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  --webkit-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+button.mapboxgl-ctrl-zoom-in:hover {
+  background: #125c73 !important;
 }
 
 button.mapboxgl-ctrl-zoom-out {
-  background: #125c73 !important;
+  background: #308eab !important;
   border-radius: 0 0 50% 50% !important;
   width: 56px !important;
   height: 56px !important;
   padding: 12px 12px !important;
   margin: 0 0 !important;
   border: none !important;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  --webkit-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+button.mapboxgl-ctrl-zoom-out:hover {
+  background: #125c73 !important;
 }
 
 button.mapboxgl-ctrl-compass {
@@ -65,13 +85,23 @@ button.mapboxgl-ctrl-compass {
 }
 
 button.mapboxgl-ctrl-geolocate {
-  background: #125c73 !important;
+  background: #308eab !important;
   border-radius: 50% !important;
   width: 56px !important;
   height: 56px !important;
   box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
     0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12) !important;
   padding: 12px 12px !important;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  --webkit-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+button.mapboxgl-ctrl-geolocate:hover {
+  background: #125c73 !important;
 }
 
 .mapboxgl-ctrl-icon {
