@@ -28,8 +28,8 @@ body {
 }
 
 .mapboxgl-ctrl-top-right {
-  top: 50px !important;
-  right: 0 !important;
+  top: 75px !important;
+  right: 10px !important;
 }
 
 .mapboxgl-popup-content {
@@ -38,4 +38,49 @@ body {
 
 .MuiSvgIcon-root {
   background: none !important;
+}
+
+button.mapboxgl-ctrl-zoom-in {
+  background: #125c73 !important;
+  border-radius: 50% 50% 0 0 !important;
+  width: 56px !important;
+  height: 56px !important;
+  padding: 12px 12px !important;
+  margin: 0 0 !important;
+  border: none !important;
+}
+
+button.mapboxgl-ctrl-zoom-out {
+  background: #125c73 !important;
+  border-radius: 0 0 50% 50% !important;
+  width: 56px !important;
+  height: 56px !important;
+  padding: 12px 12px !important;
+  margin: 0 0 !important;
+  border: none !important;
+}
+
+button.mapboxgl-ctrl-compass {
+  display: none !important;
+}
+
+button.mapboxgl-ctrl-geolocate {
+  background: #125c73 !important;
+  border-radius: 50% !important;
+  width: 56px !important;
+  height: 56px !important;
+  box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+    0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12) !important;
+  padding: 12px 12px !important;
+}
+
+.mapboxgl-ctrl-icon {
+  filter: brightness(10);
+}
+
+.mapboxgl-ctrl-group {
+  background: #125c7300 !important;
+  box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+    0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12) !important;
+  border-radius: 28px !important;
 }

@@ -12,14 +12,14 @@ import {
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import LoginIcon from "@mui/icons-material/Login";
-import { getUserToken } from "../constants/api.constant";
+import LogoutIcon from "@mui/icons-material/Logout";
 import favicon from "../assets/favicon.png";
 import fr from "../assets/fr.png";
 import us from "../assets/us.png";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
-import SyncIcon from "@mui/icons-material/Sync";
+import { getUserToken } from "../constants/api.constant";
 
 const MenuBar = () => {
   const { t, i18n } = useTranslation();
@@ -28,20 +28,20 @@ const MenuBar = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    if (!getUserToken()) {
-      navigate("/authentification");
-      return;
-    }
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
-
   const handleLanguage = () => {
+    handleClose();
     i18n.changeLanguage(i18n.language === "en" ? "fr" : "en");
     localStorage.setItem("language", i18n.language);
+  };
+
+  const handleAuth = () => {
     handleClose();
+    navigate("/authentification");
   };
 
   const handleLogout = () => {
@@ -49,11 +49,14 @@ const MenuBar = () => {
     sessionStorage.removeItem("token");
     navigate("/authentification");
     setModalOpen(false);
-    handleClose();
   };
+
   return (
     <AppBar position="fixed">
-      <Toolbar variant="dense" className="flex justify-between items-center">
+      <Toolbar
+        variant="dense"
+        className="flex justify-between items-center py-2"
+      >
         <Box
           onClick={() => navigate("/")}
           className="flex items-center cursor-pointer space-x-2"
@@ -62,22 +65,6 @@ const MenuBar = () => {
           <Typography variant="body1">{t("name")}</Typography>
         </Box>
         <Box className="flex items-center">
-          <Box
-            onClick={handleLanguage}
-            className="cursor-pointer flex items-center"
-          >
-            {i18n.language === "en" ? (
-              <>
-                <img src={fr} alt="fr" className="w-6" />
-                <SyncIcon className="transform rotate-90 ml-1" />
-              </>
-            ) : (
-              <>
-                <img src={us} alt="us" className="w-6" />
-                <SyncIcon className="transform rotate-90 ml-1" />
-              </>
-            )}
-          </Box>
           <IconButton
             edge="end"
             color="inherit"
@@ -88,9 +75,10 @@ const MenuBar = () => {
             size="large"
             onClick={handleClick}
           >
-            {getUserToken() ? <MoreVertIcon /> : <LoginIcon />}
+            <MoreVertIcon />
           </IconButton>
         </Box>
+
         <Menu
           id="basic-menu"
           anchorEl={anchorEl}
@@ -100,14 +88,39 @@ const MenuBar = () => {
             "aria-labelledby": "basic-button",
           }}
         >
-          <MenuItem
-            onClick={() => {
-              handleClose();
-              setModalOpen(true);
-            }}
-          >
-            {t("menu.logout")}
+          {!getUserToken() && (
+            <MenuItem onClick={handleAuth}>
+              <Box className="w-6 mr-2 flex justify-center items-center">
+                <LoginIcon />
+              </Box>
+              {t("menu.authentification")}
+            </MenuItem>
+          )}
+          <MenuItem onClick={handleLanguage}>
+            {i18n.language === "en" ? (
+              <>
+                <img src={fr} alt="fr" className="w-6 mr-2" />
+              </>
+            ) : (
+              <>
+                <img src={us} alt="us" className="w-6 mr-2" />
+              </>
+            )}
+            {t("menu.language")}
           </MenuItem>
+          {getUserToken() && (
+            <MenuItem
+              onClick={() => {
+                handleClose();
+                setModalOpen(true);
+              }}
+            >
+              <Box className="w-6 mr-2 flex justify-center items-center">
+                <LogoutIcon />
+              </Box>
+              {t("menu.logout")}
+            </MenuItem>
+          )}
         </Menu>
       </Toolbar>
       <Modal

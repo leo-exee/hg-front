@@ -4,7 +4,8 @@
   "cancel": "Cancel",
   "confirm": "Confirm",
   "menu": {
-    "language": "Language",
+    "language": "Change language",
+    "authentification": "Register/Login",
     "logout": "Logout",
     "logout-confirm": "Are you sure you want to logout?"
   },
