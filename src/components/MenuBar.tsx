@@ -34,7 +34,6 @@ const MenuBar = () => {
     setAnchorEl(null);
   };
   const handleLanguage = () => {
-    handleClose();
     i18n.changeLanguage(i18n.language === "en" ? "fr" : "en");
     localStorage.setItem("language", i18n.language);
   };

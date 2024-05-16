@@ -28,7 +28,7 @@ body {
 }
 
 .mapboxgl-ctrl-top-right {
-  top: 75px !important;
+  top: 65px !important;
   right: 10px !important;
 }
 
@@ -57,7 +57,11 @@ button.mapboxgl-ctrl-zoom-in {
 }
 
 button.mapboxgl-ctrl-zoom-in:hover {
-  background: #125c73 !important;
+  background: #156f8b !important;
+}
+
+button.mapboxgl-ctrl-zoom-in:active {
+  background: #308eab !important;
 }
 
 button.mapboxgl-ctrl-zoom-out {
@@ -77,7 +81,11 @@ button.mapboxgl-ctrl-zoom-out {
 }
 
 button.mapboxgl-ctrl-zoom-out:hover {
-  background: #125c73 !important;
+  background: #156f8b !important;
+}
+
+button.mapboxgl-ctrl-zoom-out:active {
+  background: #308eab !important;
 }
 
 button.mapboxgl-ctrl-compass {
@@ -101,7 +109,11 @@ button.mapboxgl-ctrl-geolocate {
 }
 
 button.mapboxgl-ctrl-geolocate:hover {
-  background: #125c73 !important;
+  background: #156f8b !important;
+}
+
+button.mapboxgl-ctrl-geolocate:active {
+  background: #308eab !important;
 }
 
 .mapboxgl-ctrl-icon {

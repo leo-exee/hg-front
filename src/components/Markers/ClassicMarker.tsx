@@ -6,6 +6,7 @@ import {
   Box,
   Button,
   Chip,
+  IconButton,
   Modal,
   Paper,
   Rating,
@@ -15,6 +16,7 @@ import AccessibleIcon from "@mui/icons-material/Accessible";
 import BabyChangingStationIcon from "@mui/icons-material/BabyChangingStation";
 import GoogleIcon from "@mui/icons-material/Google";
 import { useTranslation } from "react-i18next";
+import CloseIcon from "@mui/icons-material/Close";
 
 interface MarkerProps extends ToiletDTO {
   key: string;
@@ -44,6 +46,18 @@ const ClassicMarker: React.FC<MarkerProps> = ({ id, location, ...props }) => {
         className="m-4 flex justify-center items-center"
       >
         <Paper className="p-4 space-y-4 flex flex-col" elevation={3}>
+          <Box className="flex justify-between items-center">
+            <Typography variant="h6" color="primary">
+              {t("pages.marker.information")}
+            </Typography>
+            <IconButton
+              aria-label="close"
+              className="self-end"
+              onClick={() => setShowPopup(false)}
+            >
+              <CloseIcon />
+            </IconButton>
+          </Box>
           <Typography gutterBottom variant="h5">
             {props.name}
           </Typography>
