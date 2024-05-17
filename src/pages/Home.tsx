@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ButtonAdd from "../components/ButtonAdd";
 import Map from "../components/Map";
 import { getUserToken } from "../constants/api.constant";
+import ButtonInfo from "../components/ButtonInfo";
 
 const Home: React.FC = () => {
   const [token, setToken] = useState<string | null>(getUserToken());
@@ -11,7 +12,7 @@ const Home: React.FC = () => {
   return (
     <>
       <Map />
-      {token && <ButtonAdd />}
+      {token ? <ButtonAdd /> : <ButtonInfo />}
     </>
   );
 };

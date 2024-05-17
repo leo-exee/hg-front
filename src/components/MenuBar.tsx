@@ -20,6 +20,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { getUserToken } from "../constants/api.constant";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
 const MenuBar = () => {
   const { t, i18n } = useTranslation();
@@ -95,6 +96,17 @@ const MenuBar = () => {
               {t("menu.authentification")}
             </MenuItem>
           )}
+          <MenuItem
+            onClick={() => {
+              handleClose();
+              navigate("/info");
+            }}
+          >
+            <Box className="w-6 mr-2 flex justify-center items-center">
+              <InfoOutlinedIcon />
+            </Box>
+            {t("menu.info")}
+          </MenuItem>
           <MenuItem onClick={handleLanguage}>
             {i18n.language === "en" ? (
               <>

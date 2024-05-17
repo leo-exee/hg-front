@@ -7,7 +7,8 @@
     "language": "Change language",
     "authentification": "Register/Login",
     "logout": "Logout",
-    "logout-confirm": "Are you sure you want to logout?"
+    "logout-confirm": "Are you sure you want to logout?",
+    "info": "Learn more"
   },
   "pages": {
     "marker": {
@@ -44,6 +45,22 @@
       "generate-description": "Generate Description",
       "after-validation": "After validation, the toilets will not be visible immediately on the map. Be patient!",
       "create": "Create"
+    },
+    "info": {
+      "title": "Information",
+      "why": "Why this application?",
+      "why-text1": "Toilet! This is THE new buzzword for toilets. We feel through this name a certain embarrassment to evoke this place yet so common and so indispensable to all. To avoid being caught off guard, we imagined... THRONE!",
+      "why-text2": "The subject may seem trivial but refraining from going to the toilet is a bad habit that is not without risk for our health. Due to lack of (clean) sanitary facilities nearby or time available, we have all experienced this situation at least once. Unfortunately it starts at an early age when our toddlers are restrained not to use the school toilet, for lack of privacy, clean toilets, lack of toilet paper or ban from going out during classes. n nThe risks to the bladder, kidneys, colon or intestines are multiple.",
+      "how": "A pressing need?",
+      "how-text": "No problem, we find THE throne you need!   n nThe listed thrones are geolocated and appear on a map. A zoom on the throne closest to you allows you to know the essential information: accessibility, cleanliness, general condition, presence of a changing table, etc.",
+      "join": "Join us",
+      "join-text": "Have you spotted a throne that is not yet listed? Add it! To do so, simply register and fill in the necessary information. After validation, the toilet will not be immediately visible on the map. Be patient!",
+      "hashtag": {
+        "1": "#Easy",
+        "2": "#Fast",
+        "3": "#Effective",
+        "4": "#Accessible"
+      }
     }
   }
 }

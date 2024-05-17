@@ -10,6 +10,7 @@ import Add from "./pages/Add";
 import Authentification from "./pages/Authentification";
 import { ThemeProvider } from "@emotion/react";
 import { createTheme } from "@mui/material";
+import Info from "./pages/Info";
 
 function App() {
   const { i18n } = useTranslation();
@@ -28,9 +29,6 @@ function App() {
       secondary: {
         main: "#308eab",
       },
-      info: {
-        main: "#eee",
-      },
     },
   });
 
@@ -42,6 +40,7 @@ function App() {
             <Route index path="/" element={<Home />} />
             <Route path="/add" element={<Add />} />
             <Route path="/authentification" element={<Authentification />} />
+            <Route path="/info" element={<Info />} />
             <Route path="*" element={<NoMatch />} />
           </Route>
         </Routes>

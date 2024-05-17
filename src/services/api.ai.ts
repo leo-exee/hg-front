@@ -1,6 +1,5 @@
 import axios from "axios";
-import { API_URL } from "../constants/api.constant";
-
+import { API_URL, getUserToken } from "../constants/api.constant";
 
 
 export interface ContentDTO {
@@ -15,6 +14,11 @@ export interface ContentDTO {
 }
 
 export const describeToilet = async (content: ContentDTO) => {
-  const response = await axios.post(`${API_URL}/ai/describe`, content);
+  const response = await axios.post(`${API_URL}/ai/describe`, content, {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": getUserToken(),
+    },
+  });
   return response.data;
 };

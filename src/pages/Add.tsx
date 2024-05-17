@@ -8,19 +8,17 @@ const Add: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   return (
-    <Box className="mt-16">
+    <Box className="mt-20">
       <Box className="flex items-center">
         <IconButton
           size="large"
-          onClick={() => navigate(-1)}
+          onClick={() => navigate("/")}
           aria-label={t("back")}
           color="primary"
         >
           <ArrowBackIcon />
         </IconButton>
-        <Typography variant="h5" className="mt-4">
-          {t("pages.add.title")}
-        </Typography>
+        <Typography variant="h5">{t("pages.add.title")}</Typography>
       </Box>
       <MarkerForm />
     </Box>

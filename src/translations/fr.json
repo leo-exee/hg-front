@@ -1,13 +1,14 @@
 {
   "name": "My Trône",
-  "description": "Localiser et ajouter des toilettes à la carte",
+  "description": "The collaborative tool that identifies toilets in public and private places",
   "cancel": "Annuler",
   "confirm": "Confirmer",
   "menu": {
     "language": "Changez de langue",
     "authentification": "S'incrire / Se connecter",
     "logout": "Déconnexion",
-    "logout-confirm": "Êtes-vous sûr de vouloir vous déconnecter ?"
+    "logout-confirm": "Êtes-vous sûr de vouloir vous déconnecter ?",
+    "info": "En savoir plus"
   },
   "pages": {
     "marker": {
@@ -44,6 +45,22 @@
       "generate-description": "Générer une description",
       "after-validation": "Après validation, les toilettes ne seront pas visibles immédiatement sur la carte. Soyez patient !",
       "create": "Créer"
+    },
+    "info": {
+      "title": "Informations",
+      "why": "Pourquoi cette application ?",
+      "why-text1": "Cabinet d'aisance ! C'est LE nouveau terme en vogue pour parler des toilettes. On sent à travers cette appellation une certaine gêne à évoquer ce lieu pourtant si commun et si indispensable à tous. Pour ne plus être pris au dépourvu, nous avons imaginé...TRÔNE !",
+      "why-text2": "Le sujet peut paraître futile mais se retenir d'aller aux toilettes est une mauvaise habitude qui n'est pas sans risque pour notre santé. Faute de sanitaires (propres) à proximité ou de temps disponible, nous avons tous subi cette situation au moins une fois. Malheureusement cela commence dès le plus jeune âge lorsque nos bambins se retiennent pour ne pas utiliser les toilettes de l'école, faute d'intimité, de toilettes propres, d'absence de papier toilette ou d'interdiction de sortie pendant les cours.\n\nLes risques pour la vessie, les reins, le colon ou les intestins sont multiples.",
+      "how": "Un besoin pressant ?",
+      "how-text": "Aucun problème, nous trouvons LE trône qu'il vous faut ! \n\nLes trônes répertoriés sont géolocalisés et figurent sur une carte. Un zoom sur le trône le plus proche de vous vous permet de connaître les informations essentielles : accessibilité, propreté, état général, présence d'une table à langer, etc.",
+      "join": "Rejoignez-nous",
+      "join-text": "Vous avez repéré un trône qui n'est pas encore répertorié ? Ajoutez-le ! Pour cela, il vous suffit de vous inscrire et de remplir les informations nécessaires. Après validation, les toilettes ne seront pas visibles immédiatement sur la carte. Soyez patient !",
+      "hashtag": {
+        "1": "#Facile",
+        "2": "#Rapide",
+        "3": "#Efficace",
+        "4": "#Accessible"
+      }
     }
   }
 }

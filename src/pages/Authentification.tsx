@@ -25,7 +25,7 @@ const Authentification: React.FC = () => {
 
   return (
     <>
-      <Box className="flex items-center mt-16">
+      <Box className="flex items-center mt-20">
         <IconButton
           size="large"
           onClick={() => navigate("/")}

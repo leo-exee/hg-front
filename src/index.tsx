@@ -4,10 +4,9 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import axios from "axios";
-import { API_URL, getUserToken } from "./constants/api.constant";
+import { API_URL } from "./constants/api.constant";
 
 axios.defaults.baseURL = API_URL;
-axios.defaults.headers.common["Authorization"] = getUserToken();
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
 axios.interceptors.request.use(
