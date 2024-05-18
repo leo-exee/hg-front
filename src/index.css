@@ -137,5 +137,5 @@ header {
   top: 0.75rem !important;
   left: 0.75rem !important;
   right: 0.75rem !important;
-  width: calc(100% - 2rem) !important;
+  width: calc(100% - 1.5rem) !important;
 }
