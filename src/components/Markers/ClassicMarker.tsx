@@ -43,9 +43,9 @@ const ClassicMarker: React.FC<MarkerProps> = ({ id, location, ...props }) => {
       <Modal
         open={showPopup}
         onClose={() => setShowPopup(false)}
-        className="m-4 flex justify-center items-center"
+        className="m-4"
       >
-        <Paper className="p-4 space-y-4 flex flex-col" elevation={3}>
+        <Box className="space-y-4 p-4 flex flex-col max-h-full overflow-y-auto bg-white rounded-lg">
           <Box className="flex justify-between items-center">
             <Typography variant="h6" color="primary">
               {t("pages.marker.information")}
@@ -84,11 +84,7 @@ const ClassicMarker: React.FC<MarkerProps> = ({ id, location, ...props }) => {
           <Typography component="text" variant="body1">
             {props.address}
           </Typography>
-          <Typography
-            gutterBottom
-            variant="body2"
-            className="max-h-40 overflow-y-auto"
-          >
+          <Typography gutterBottom variant="body2">
             {props.description}
           </Typography>
           <Box className="space-y-2">
@@ -156,7 +152,7 @@ const ClassicMarker: React.FC<MarkerProps> = ({ id, location, ...props }) => {
               Google Maps
             </Button>
           </Box>
-        </Paper>
+        </Box>
       </Modal>
     </>
   );
