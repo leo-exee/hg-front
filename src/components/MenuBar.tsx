@@ -52,10 +52,11 @@ const MenuBar = () => {
   };
 
   return (
-    <AppBar position="fixed">
+    <AppBar position="fixed" className="rounded-full">
       <Toolbar
         variant="dense"
-        className="flex justify-between items-center py-2"
+        className="flex justify-between items-center py-1 px-3"
+        disableGutters={true}
       >
         <Box
           onClick={() => navigate("/")}
@@ -64,20 +65,18 @@ const MenuBar = () => {
           <img src={favicon} alt="Logo" className="w-8 h-8" />
           <Typography variant="body1">{t("name")}</Typography>
         </Box>
-        <Box className="flex items-center">
-          <IconButton
-            edge="end"
-            color="inherit"
-            aria-label="account of current user"
-            aria-haspopup="true"
-            aria-controls="menu-appbar"
-            aria-expanded={false}
-            size="large"
-            onClick={handleClick}
-          >
-            <MoreVertIcon />
-          </IconButton>
-        </Box>
+        <IconButton
+          edge="end"
+          color="inherit"
+          aria-label="account of current user"
+          aria-haspopup="true"
+          aria-controls="menu-appbar"
+          aria-expanded={false}
+          size="large"
+          onClick={handleClick}
+        >
+          <MoreVertIcon />
+        </IconButton>
 
         <Menu
           id="basic-menu"
