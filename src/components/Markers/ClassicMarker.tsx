@@ -1,4 +1,4 @@
-import { Marker } from "react-map-gl";
+import { Marker, useMap } from "react-map-gl";
 import FmdGoodIcon from "@mui/icons-material/FmdGood";
 import { useState } from "react";
 import { ToiletDTO } from "../../types/toilets.type";
@@ -25,14 +25,14 @@ interface MarkerProps extends ToiletDTO {
 const ClassicMarker: React.FC<MarkerProps> = ({ id, location, ...props }) => {
   const { t } = useTranslation();
   const [showPopup, setShowPopup] = useState<boolean>(false);
+
+  const handleClick = () => {
+    setShowPopup(true);
+  };
   return (
     <>
       <Marker key={id} latitude={location.lat} longitude={location.long}>
-        <Box
-          onClick={(e) => {
-            setShowPopup(true);
-          }}
-        >
+        <Box onClick={handleClick}>
           <FmdGoodIcon
             className="cursor-pointer"
             fontSize="large"

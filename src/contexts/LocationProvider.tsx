@@ -13,8 +13,12 @@ interface locationContextProps {
 
 const LocationContext = createContext<locationContextProps>({
   userLocation: {
-    lat: LYON.latitude,
-    long: LYON.longitude,
+    lat: localStorage.getItem("lat")
+      ? parseFloat(localStorage.getItem("lat")!)
+      : LYON.latitude,
+    long: localStorage.getItem("long")
+      ? parseFloat(localStorage.getItem("long")!)
+      : LYON.longitude,
   },
   setUserLocation: () => {},
 });
@@ -27,12 +31,18 @@ export const LocationProvider: React.FC<LocationProviderProps> = ({
   children,
 }) => {
   const [userLocation, setUserLocation] = useState<position>({
-    lat: LYON.latitude,
-    long: LYON.longitude,
+    lat: localStorage.getItem("lat")
+      ? parseFloat(localStorage.getItem("lat")!)
+      : LYON.latitude,
+    long: localStorage.getItem("long")
+      ? parseFloat(localStorage.getItem("long")!)
+      : LYON.longitude,
   });
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
+      localStorage.setItem("lat", position.coords.latitude.toString());
+      localStorage.setItem("long", position.coords.longitude.toString());
       setUserLocation({
         lat: position.coords.latitude,
         long: position.coords.longitude,

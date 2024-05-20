@@ -48,6 +48,7 @@
     },
     "info": {
       "title": "Informations",
+      "instagram": "Suivez-nous sur Instagram",
       "why": "Pourquoi cette application ?",
       "why-text1": "Cabinet d'aisance ! C'est LE nouveau terme en vogue pour parler des toilettes. On sent à travers cette appellation une certaine gêne à évoquer ce lieu pourtant si commun et si indispensable à tous. Pour ne plus être pris au dépourvu, nous avons imaginé...TRÔNE !",
       "why-text2": "Le sujet peut paraître futile mais se retenir d'aller aux toilettes est une mauvaise habitude qui n'est pas sans risque pour notre santé. Faute de sanitaires (propres) à proximité ou de temps disponible, nous avons tous subi cette situation au moins une fois. Malheureusement cela commence dès le plus jeune âge lorsque nos bambins se retiennent pour ne pas utiliser les toilettes de l'école, faute d'intimité, de toilettes propres, d'absence de papier toilette ou d'interdiction de sortie pendant les cours.\n\nLes risques pour la vessie, les reins, le colon ou les intestins sont multiples.",
@@ -61,6 +62,11 @@
         "3": "#Efficace",
         "4": "#Accessible"
       }
+    },
+    "404": {
+      "title": "404",
+      "text": "La page que vous cherchez n'existe pas",
+      "home": "Retour à l'accueil"
     }
   }
 }

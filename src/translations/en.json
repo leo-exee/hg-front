@@ -48,6 +48,7 @@
     },
     "info": {
       "title": "Information",
+      "instagram": "Follow us on Instagram",
       "why": "Why this application?",
       "why-text1": "Toilet! This is THE new buzzword for toilets. We feel through this name a certain embarrassment to evoke this place yet so common and so indispensable to all. To avoid being caught off guard, we imagined... THRONE!",
       "why-text2": "The subject may seem trivial but refraining from going to the toilet is a bad habit that is not without risk for our health. Due to lack of (clean) sanitary facilities nearby or time available, we have all experienced this situation at least once. Unfortunately it starts at an early age when our toddlers are restrained not to use the school toilet, for lack of privacy, clean toilets, lack of toilet paper or ban from going out during classes. n nThe risks to the bladder, kidneys, colon or intestines are multiple.",
@@ -61,6 +62,11 @@
         "3": "#Effective",
         "4": "#Accessible"
       }
+    },
+    "404": {
+      "title": "404",
+      "text": "The page you are looking for does not exist",
+      "home": "Back to home"
     }
   }
 }

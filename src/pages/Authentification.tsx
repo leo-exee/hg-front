@@ -15,31 +15,24 @@ const Authentification: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  useEffect(() => {
-    navigate(`/authentification`);
-  }, []);
-
   const [authType, setAuthType] = useState<AuthentificationType>(
     AuthentificationType.REGISTER
   );
 
   return (
-    <>
-      <Box className="flex items-center mt-20">
-        <IconButton
-          size="large"
-          onClick={() => navigate("/")}
-          aria-label={t("back")}
-          color="primary"
-        >
-          <ArrowBackIcon />
-        </IconButton>
-        <Typography variant="h5" className="mt-4">
-          {authType === AuthentificationType.LOGIN
-            ? t("pages.authentification.login")
-            : t("pages.authentification.register")}
-        </Typography>
-      </Box>
+    <Box className="mt-20">
+      <Container>
+        <Box className="flex items-center">
+          <Box className="my-2 mr-2 cursor-pointer">
+            <ArrowBackIcon onClick={() => navigate("/")} color="primary" />
+          </Box>
+          <Typography variant="h5" className="mt-4">
+            {authType === AuthentificationType.LOGIN
+              ? t("pages.authentification.login")
+              : t("pages.authentification.register")}
+          </Typography>
+        </Box>
+      </Container>
       <Box>
         {authType === AuthentificationType.LOGIN ? (
           <LoginForm />
@@ -70,7 +63,7 @@ const Authentification: React.FC = () => {
             : t("pages.authentification.login")}
         </Button>
       </Container>
-    </>
+    </Box>
   );
 };
 

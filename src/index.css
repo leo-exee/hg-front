@@ -22,8 +22,7 @@ body {
 }
 
 .mapboxgl-ctrl-bottom-left,
-.mapboxgl-ctrl-bottom-right,
-.mapboxgl-user-location-accuracy-circle {
+.mapboxgl-ctrl-bottom-right {
   display: none;
 }
 

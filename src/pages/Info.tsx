@@ -10,23 +10,21 @@ import { useNavigate } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useTranslation } from "react-i18next";
 import { getUserToken } from "../constants/api.constant";
+import InstagramIcon from "@mui/icons-material/Instagram";
 
 const Info: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   return (
     <Box className="mt-20">
-      <Box className="flex items-center">
-        <IconButton
-          size="large"
-          onClick={() => navigate("/")}
-          aria-label={t("back")}
-          color="primary"
-        >
-          <ArrowBackIcon />
-        </IconButton>
-        <Typography variant="h5">{t("pages.info.title")}</Typography>
-      </Box>
+      <Container>
+        <Box className="flex items-center">
+          <Box className="my-2 mr-2 cursor-pointer">
+            <ArrowBackIcon onClick={() => navigate("/")} color="primary" />
+          </Box>
+          <Typography variant="h5">{t("pages.info.title")}</Typography>
+        </Box>
+      </Container>
       <Container component="main">
         <Typography
           variant="h6"
@@ -106,7 +104,7 @@ const Info: React.FC = () => {
         >
           {t("pages.info.join-text")}
         </Typography>
-        <Box className="flex justify-center my-4">
+        <Box className="flex justify-center flex-col	items-center my-4 space-y-4">
           {getUserToken() ? (
             <Button
               variant="contained"
@@ -125,6 +123,15 @@ const Info: React.FC = () => {
               {t("menu.authentification")}
             </Button>
           )}
+          <Button
+            variant="contained"
+            color="secondary"
+            startIcon={<InstagramIcon />}
+            href="https://www.instagram.com/my_trone_official/"
+            target="_blank"
+          >
+            {t("pages.info.instagram")}
+          </Button>
         </Box>
       </Container>
     </Box>
