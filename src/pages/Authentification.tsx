@@ -23,7 +23,7 @@ const Authentification: React.FC = () => {
     <Box className="mt-20">
       <Container>
         <Box className="flex items-center">
-          <Box className="my-2 mr-2 cursor-pointer">
+          <Box className="my-4 mr-2 cursor-pointer">
             <ArrowBackIcon onClick={() => navigate("/")} color="primary" />
           </Box>
           <Typography variant="h5" className="mt-4">
